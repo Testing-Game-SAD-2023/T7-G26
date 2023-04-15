@@ -14,17 +14,4 @@ public class Controller {
         this.inputTestClassFile = new File("inputTestClass.txt");
     }
 
-    public void test(){
-        String content1;
-        String content2;
-        try {
-            content1 = FileToStringReader.convert(inputClassFile);
-            content2 = FileToStringReader.convert(inputTestClassFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println(content1 + content2);
-    }
-
 }
