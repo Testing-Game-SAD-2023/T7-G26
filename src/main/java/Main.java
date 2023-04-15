@@ -1,3 +1,5 @@
+import Util.FileCreator;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         // Java code to compile and run
@@ -13,6 +15,8 @@ public class Main {
                 + "    assertEquals(\"Hello John\", result);\r\n"
                 + "  }\r\n"
                 + "}";
+
+        FileCreator.createFile("HelloWorldTest", code);
         Class<?> compiledClass = Compilation.compileTestClass("HelloWorldTest", code);
     }
 }
