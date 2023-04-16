@@ -1,3 +1,5 @@
+package controller;
+
 import javax.tools.*;
 import java.io.IOException;
 import java.net.URI;
@@ -5,7 +7,7 @@ import java.util.Arrays;
 
 public class Compilation {
 
-    static Class<?> compileTestClass(String className, String code) throws Exception {
+    public static boolean compileTestClass(String className, String code) throws Exception {
 
         // Create a new JavaCompiler
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
@@ -22,7 +24,8 @@ public class Compilation {
 
         if (success) {
             // Load the compiled class
-            return Class.forName(className);
+            //return Class.forName(className);
+            return success;
         } else {
             throw new Exception("Compilation failed.");
         }
