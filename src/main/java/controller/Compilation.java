@@ -1,34 +1,32 @@
 package controller;
 
+import Util.CharSequenceJavaFileObject;
+import Util.ClassFileManager;
+
 import javax.tools.*;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.URI;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Compilation {
 
-    public static boolean compileTestClass(String className, String code) throws Exception {
+    public static Class<?> compileTestClass(String className, String code) throws Exception {
 
-        // Create a new JavaCompiler
+        // Compilar la clase
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+        JavaFileManager manager = new ClassFileManager(compiler.getStandardFileManager(null, null, null));
 
-        // Create a new in-memory Java file from the source code
-        JavaFileObject javaFile = new StringJavaFileObject(className, code);
+        List<JavaFileObject> files = new ArrayList<JavaFileObject>();
+        files.add(new CharSequenceJavaFileObject(className, code));
 
-        // Create a new CompilationTask from the compiler
-        StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-        JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, null, null, null, Arrays.asList(javaFile));
+        compiler.getTask(Writer.nullWriter(), manager, null, null, null, files).call();
 
-        // Call the CompilationTask's call method to compile the code
-        boolean success = task.call();
+        // Cargar e instanciar la clase
+        Class<?> clas = manager.getClassLoader(null).loadClass(className);
 
-        if (success) {
-            // Load the compiled class
-            //return Class.forName(className);
-            return success;
-        } else {
-            throw new Exception("Compilation failed.");
-        }
+        return clas;
     }
 
     // Inner class to represent a Java source file as a String

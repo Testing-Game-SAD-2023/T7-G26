@@ -1,6 +1,16 @@
-import Util.FileCreator;
+import ClassesToTest.HelloWorld;
+import Util.CharSequenceJavaFileObject;
+import Util.ClassFileManager;
 import controller.Compilation;
+import controller.Execution;
 
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileManager;
+import javax.tools.JavaFileObject;
+import javax.tools.ToolProvider;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -26,13 +36,19 @@ public class Main {
         System.out.print("¿Do you want to compile the code? (y/n): ");
         String respuesta = sc.next();
         if (respuesta.equalsIgnoreCase("y")) {
-            boolean succes = Compilation.compileTestClass("HelloWorldTest", code);
+            boolean succes = true;
             if(succes) {
-                FileCreator.createFile("HelloWorldTest", code);
+                //FileCreator.createFile("HelloWorldTest", code);
+
+                String name = "controller.HelloWorldTest";
+
+                Class<?> clas =Compilation.compileTestClass(name,code);
                 System.out.print("¿Do you want to execute the code? (y/n): ");
                 respuesta = sc.next();
                 if (respuesta.equalsIgnoreCase("y")) {
-
+                    HelloWorld h = new HelloWorld();
+                    Execution.runTests(clas,h);
+                    //Class.forName("controller.HelloWorldTest");
                 }else if (respuesta.equalsIgnoreCase("n")) {
                     System.out.println("No execution");
                 } else {
@@ -46,4 +62,5 @@ public class Main {
         }
         sc.close();
     }
+
 }
