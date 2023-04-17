@@ -1,0 +1,18 @@
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class InputTestClass {
+    @Test
+    public void testEvenNumber() {
+        int num = 4;
+        String result = InputClass.evenOrOdd(num);
+        assertEquals("even", result);
+    }
+
+    @Test
+    public void testOddNumber() {
+        int num = 7;
+        String result = InputClass.evenOrOdd(num);
+        assertEquals("odd", result);
+    }
+}
