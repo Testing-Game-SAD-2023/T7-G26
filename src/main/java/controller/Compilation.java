@@ -7,6 +7,8 @@ import javax.tools.*;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import javax.tools.JavaCompiler;
+import javax.tools.JavaCompiler.CompilationTask;
 
 public class Compilation {
 
@@ -19,11 +21,20 @@ public class Compilation {
         List<JavaFileObject> files = new ArrayList<JavaFileObject>();
         files.add(new CharSequenceJavaFileObject(className, code));
 
-        compiler.getTask(Writer.nullWriter(), manager, null, null, null, files).call();
+        boolean success = compiler.getTask(null, manager, null, null, null, files).call();
 
         //Load and instantiate the class
-        Class<?> clas = manager.getClassLoader(null).loadClass(className);
+        Class<?> clazz = manager.getClassLoader(null).loadClass(className);
 
-        return clas;
+        // Call the CompilationTask's call method to compile the code
+
+        if (success) {
+            // Load the compiled class
+            return clazz;
+        } else {
+            throw new Exception("Compilation failed.");
+        }
+
+        //return clas;
     }
 }
