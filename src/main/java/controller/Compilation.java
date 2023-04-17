@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Compilation {
 
-    public static Class<?> compileTestClass(String className, String code) throws Exception {
+    public static Class<?> compileClass(String className, String code) throws Exception {
 
         // Compilar la clase
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();

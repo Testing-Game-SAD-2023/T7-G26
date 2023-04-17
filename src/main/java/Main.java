@@ -31,36 +31,10 @@ public class Main {
                 "    assertEquals(\"Hello John\", result);\n" +
                 "  }\n" +
                 "}";
+        String name = "controller.HelloWorldTest";
+        Game g = new Game(code,name);
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("¿Do you want to compile the code? (y/n): ");
-        String respuesta = sc.next();
-        if (respuesta.equalsIgnoreCase("y")) {
-            boolean succes = true;
-            if(succes) {
-                //FileCreator.createFile("HelloWorldTest", code);
-
-                String name = "controller.HelloWorldTest";
-
-                Class<?> clas =Compilation.compileTestClass(name,code);
-                System.out.print("¿Do you want to execute the code? (y/n): ");
-                respuesta = sc.next();
-                if (respuesta.equalsIgnoreCase("y")) {
-                    HelloWorld h = new HelloWorld();
-                    Execution.runTests(clas,h);
-                    //Class.forName("controller.HelloWorldTest");
-                }else if (respuesta.equalsIgnoreCase("n")) {
-                    System.out.println("No execution");
-                } else {
-                    System.out.println("Inavalid response");
-                }
-            }
-        } else if (respuesta.equalsIgnoreCase("n")) {
-            System.out.println("No compilation");
-        } else {
-            System.out.println("Inavalid response");
-        }
-        sc.close();
+        g.startGame();
     }
 
 }

@@ -5,7 +5,7 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 public class Execution {
-    public static void runTests(Class<?> testClass, Object testObject) {
+    public static void runTests(Class<?> testClass) {
 
         // Run the JUnit tests
         Result result = JUnitCore.runClasses(testClass);
