@@ -1,7 +1,7 @@
 package controller;
 
-import Util.CharSequenceJavaFileObject;
-import Util.ClassFileManager;
+import util.CharSequenceJavaFileObject;
+import util.ClassFileManager;
 
 import javax.tools.*;
 import java.io.IOException;
