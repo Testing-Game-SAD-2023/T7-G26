@@ -1,14 +1,12 @@
-package controller;
+package model;
 
-import util.CharSequenceJavaFileObject;
-import util.ClassFileManager;
+import model.logic.CharSequenceJavaFileObject;
+import model.logic.ClassFileManager;
 
 import javax.tools.*;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import javax.tools.JavaCompiler;
-import javax.tools.JavaCompiler.CompilationTask;
 
 public class Compilation {
 

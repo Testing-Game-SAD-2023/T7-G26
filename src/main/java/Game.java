@@ -1,7 +1,7 @@
-import controller.Compilation;
-import controller.Execution;
-import util.FileCreator;
-import util.FileToStringReader;
+import model.Compilation;
+import model.Execution;
+import model.logic.FileCreator;
+import model.logic.FileToStringReader;
 
 import java.io.File;
 import java.io.IOException;

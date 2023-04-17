@@ -1,4 +1,4 @@
-package util;
+package model.logic;
 
 import java.io.IOException;
 import java.security.SecureClassLoader;
