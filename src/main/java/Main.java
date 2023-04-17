@@ -1,18 +1,3 @@
-import ClassesToTest.HelloWorld;
-import Util.CharSequenceJavaFileObject;
-import Util.ClassFileManager;
-import controller.Compilation;
-import controller.Execution;
-
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileManager;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) throws Exception {
         // Java code to compile and run
@@ -32,7 +17,7 @@ public class Main {
                 "  }\n" +
                 "}";
         String name = "controller.HelloWorldTest";
-        Game g = new Game(code,name);
+        Game g = new Game(name,code);
 
         g.startGame();
     }
