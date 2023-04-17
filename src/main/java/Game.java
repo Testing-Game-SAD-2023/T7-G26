@@ -1,5 +1,6 @@
 import controller.Compilation;
 import controller.Execution;
+import util.FileCreator;
 import util.FileToStringReader;
 
 import java.io.File;
@@ -40,7 +41,8 @@ public class Game {
             if(success) {
                 //Compilation and return of an instance of the class
                 Class<?> clazz1 = Compilation.compileClass("model." + inputClassName,inputClassCode);
-                Class<?> clazz2 = Compilation.compileClass(inputTestClassName,inputTestClassCode);
+                FileCreator.createFile(inputClassName,inputClassCode);
+                Class<?> clazz2 = Compilation.compileClass("model."+ inputTestClassName,inputTestClassCode);
                 //Ask if you want to execute the code
                 System.out.print("¿Do you want to execute the code? (y/n): ");
                 response = sc.next();
