@@ -1,19 +1,24 @@
 package requirement_t7.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import requirement_t7.model.util.FileCreator;
 import requirement_t7.model.util.FileToStringReader;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
 @Service
 public class Game {
 
-    private String inputTestClassName = "InputClass";
-    private String inputClassName = "InputTestClass";
+    private String inputTestClassName = "InputTestClass";
+    private String inputClassName = "InputClass";
     private String inputClassCode;
     private String inputTestClassCode;
+
+    @Autowired
+    private FileCreator fileCreator;
 
     private Class<?> clazz;
 
@@ -66,6 +71,6 @@ public class Game {
 
     private void compileClass() throws Exception {
         Compilation.compileClass("requirement_t7.model." + inputClassName,inputClassCode);
-        FileCreator.createFile(inputClassName,inputClassCode);
+        fileCreator.createFile(inputClassName,inputClassCode);
     }
 }
