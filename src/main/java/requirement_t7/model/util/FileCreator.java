@@ -1,4 +1,4 @@
-package requirement.t7.model.util;
+package requirement_t7.model.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class FileCreator {
     public static void createFile(String name, String code) {
-        File file = new File("src/main/java/model/"+name+".java");
+        File file = new File("src/main/java/requirement_t7/model/"+name+".java");
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile());
              BufferedWriter bw = new BufferedWriter(fw);){
 

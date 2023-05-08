@@ -1,4 +1,4 @@
-package requirement.t7.model.util;
+package requirement_t7.model.util;
 
 import java.io.IOException;
 import java.security.SecureClassLoader;

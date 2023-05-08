@@ -1,12 +1,11 @@
-package requirement.t7.model;
+package requirement_t7.model;
 
 import org.springframework.stereotype.Service;
-import requirement.t7.model.util.FileCreator;
-import requirement.t7.model.util.FileToStringReader;
+import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.FileToStringReader;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 @Service
 public class Game {
@@ -62,11 +61,11 @@ public class Game {
     }
 
     private void compileTest() throws Exception {
-        clazz = Compilation.compileClass("requirement.t7.model."+ inputTestClassName,inputTestClassCode);
+        clazz = Compilation.compileClass("requirement_t7.model."+ inputTestClassName,inputTestClassCode);
     }
 
     private void compileClass() throws Exception {
-        Compilation.compileClass("requirement.t7.model." + inputClassName,inputClassCode);
+        Compilation.compileClass("requirement_t7.model." + inputClassName,inputClassCode);
         FileCreator.createFile(inputClassName,inputClassCode);
     }
 }

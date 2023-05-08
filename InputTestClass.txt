@@ -1,4 +1,4 @@
-package requirement.t7.model;
+package requirement_t7.model;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

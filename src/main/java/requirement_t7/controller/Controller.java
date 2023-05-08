@@ -1,11 +1,10 @@
-package requirement.t7.controller;
+package requirement_t7.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import requirement.t7.model.Game;
+import requirement_t7.model.Game;
 
 @RestController
 public class Controller {
