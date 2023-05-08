@@ -1,4 +1,4 @@
-package model.util;
+package requirement.t7.model.util;
 
 import java.net.URI;
 

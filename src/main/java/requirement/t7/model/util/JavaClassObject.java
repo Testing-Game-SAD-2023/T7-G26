@@ -1,4 +1,4 @@
-package model.util;
+package requirement.t7.model.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

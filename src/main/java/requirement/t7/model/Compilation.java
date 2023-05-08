@@ -1,7 +1,7 @@
-package model;
+package requirement.t7.model;
 
-import model.util.CharSequenceJavaFileObject;
-import model.util.ClassFileManager;
+import requirement.t7.model.util.CharSequenceJavaFileObject;
+import requirement.t7.model.util.ClassFileManager;
 
 import javax.tools.*;
 import java.util.ArrayList;
