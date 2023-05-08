@@ -1,4 +1,4 @@
-package model.logic;
+package requirement_t7.model.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

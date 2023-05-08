@@ -1,7 +1,7 @@
-package model;
+package requirement_t7.model;
 
-import model.logic.CharSequenceJavaFileObject;
-import model.logic.ClassFileManager;
+import requirement_t7.model.util.CharSequenceJavaFileObject;
+import requirement_t7.model.util.ClassFileManager;
 
 import javax.tools.*;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-import model.Compilation;
-import model.Execution;
-import model.logic.FileCreator;
-import model.logic.FileToStringReader;
+import requirement_t7.model.Compilation;
+import requirement_t7.model.Execution;
+import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.FileToStringReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,7 +53,7 @@ public class Game {
         String response;
         if(success) {
             //Compilation and return of an instance of the class
-            Class<?> clazz = Compilation.compileClass("model."+ inputTestClassName,inputTestClassCode);
+            Class<?> clazz = Compilation.compileClass("requirement_t7.model."+ inputTestClassName,inputTestClassCode);
             //Ask if you want to execute the code
             System.out.print("¿Do you want to execute the code? (y/n): ");
             response = sc.next();
@@ -69,7 +69,7 @@ public class Game {
     }
 
     private void compileClass() throws Exception {
-        Compilation.compileClass("model." + inputClassName,inputClassCode);
+        Compilation.compileClass("requirement_t7.model." + inputClassName,inputClassCode);
         FileCreator.createFile(inputClassName,inputClassCode);
     }
 }
