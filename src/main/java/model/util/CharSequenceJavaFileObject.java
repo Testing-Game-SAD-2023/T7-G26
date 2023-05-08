@@ -1,4 +1,4 @@
-package model.logic;
+package model.util;
 
 import java.net.URI;
 

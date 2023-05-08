@@ -1,4 +1,4 @@
-package model.logic;
+package model.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

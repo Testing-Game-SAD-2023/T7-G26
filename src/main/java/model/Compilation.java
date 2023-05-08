@@ -1,7 +1,7 @@
 package model;
 
-import model.logic.CharSequenceJavaFileObject;
-import model.logic.ClassFileManager;
+import model.util.CharSequenceJavaFileObject;
+import model.util.ClassFileManager;
 
 import javax.tools.*;
 import java.util.ArrayList;

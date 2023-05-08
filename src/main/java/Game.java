@@ -1,7 +1,7 @@
 import model.Compilation;
 import model.Execution;
-import model.logic.FileCreator;
-import model.logic.FileToStringReader;
+import model.util.FileCreator;
+import model.util.FileToStringReader;
 
 import java.io.File;
 import java.io.IOException;
