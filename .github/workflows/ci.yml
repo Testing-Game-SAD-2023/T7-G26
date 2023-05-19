@@ -1,4 +1,4 @@
-name: Workflow for SPME-SlidingPuzzle
+name: Workflow for SAD-T7
 
 on:
   push:
