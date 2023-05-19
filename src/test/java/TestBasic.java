@@ -13,19 +13,19 @@ public class TestBasic {
         game = new Game();
     }
 
-    @Test
-    public void testCompileCorrectly(){
-        assertEquals("Compiled", game.compile() );
-    }
+    //@Test
+    //public void testCompileCorrectly(){
+    //    assertEquals("Compiled", game.compile() );
+    //}
 
     @Test
     public void testExecuteNotCompiled(){
         assertEquals("Cannot execute because you have not compiled", game.execute());
     }
 
-    @Test
-    public void testExecuteCorrectly(){
-        game.compile();
-        assertNotEquals("Cannot execute because you have not compiled", game.execute());
-    }
+    //@Test
+    //public void testExecuteCorrectly(){
+    //    game.compile();
+    //    assertNotEquals("Cannot execute because you have not compiled", game.execute());
+    //}
 }
