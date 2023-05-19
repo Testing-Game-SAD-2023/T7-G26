@@ -9,7 +9,7 @@ public class TestBasic {
     private Game game;
 
     @BeforeEach
-    private void init(){
+    public void init(){
         game = new Game();
     }
 
