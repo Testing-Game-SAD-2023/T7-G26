@@ -11,9 +11,8 @@ import java.io.IOException;
 
 @Service
 public class Game {
-
-    private String inputTestClassName = "InputTestClass";
-    private String inputClassName = "InputClass";
+    private String inputTestClassName;
+    private String inputClassName;
     private String inputClassCode;
     private String inputTestClassCode;
 
@@ -23,8 +22,6 @@ public class Game {
     private Class<?> clazz;
 
     public Game(){
-        inputClassCode = obtainCode(inputClassName);
-        inputTestClassCode = obtainCode(inputTestClassName);
     }
 
     private String obtainCode(String input){
@@ -38,6 +35,10 @@ public class Game {
     }
 
     public String compile(){
+        //Obtain the code from the files
+        inputClassCode = obtainCode(inputClassName);
+        inputTestClassCode = obtainCode(inputTestClassName);
+
         //Compile input class
         try {
             compileClass();
@@ -72,5 +73,13 @@ public class Game {
     private void compileClass() throws Exception {
         Compilation.compileClass("requirement_t7.model." + inputClassName,inputClassCode);
         fileCreator.createFile(inputClassName,inputClassCode);
+    }
+
+    public void setInputTestClassName(String inputTestClassName) {
+        this.inputTestClassName = inputTestClassName;
+    }
+
+    public void setInputClassName(String inputClassName) {
+        this.inputClassName = inputClassName;
     }
 }

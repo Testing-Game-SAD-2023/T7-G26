@@ -37,7 +37,7 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <includes>
-                        <include>TestBasic.java</include>
+                        <include>TestGame.java</include>
                     </includes>
                 </configuration>
             </plugin>
