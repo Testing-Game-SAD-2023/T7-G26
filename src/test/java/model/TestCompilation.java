@@ -8,19 +8,12 @@ import requirement_t7.model.Game;
 import requirement_t7.model.InputClass;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCompilation {
-    private Compilation compilation;
-
-    @BeforeEach
-    public void init(){
-        new Compilation();
-    }
-
     @Test
     public void testCompilationError(){
-        assertThrows(Exception.class, () -> compilation.compileClass("Name", "I am an error in the code"));
+        assertThrows(Exception.class, () -> Compilation.compileClass("Name", "I am an error in the code"));
     }
 
     @Test
@@ -31,7 +24,7 @@ public class TestCompilation {
         game.compile();
 
         try {
-            assertNotEquals(InputClass.class , compilation.compileClass("InputClass", "package requirement_t7.model;\n" +
+            assertEquals(InputClass.class , Compilation.compileClass("InputClass", "package requirement_t7.model;\n" +
                     "public class InputClass {\n" +
                     "    public static String evenOrOdd(int num) {\n" +
                     "        if (num % 2 == 0) {\n" +
