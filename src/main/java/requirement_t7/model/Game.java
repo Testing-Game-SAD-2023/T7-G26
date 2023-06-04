@@ -1,6 +1,7 @@
 package requirement_t7.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import requirement_t7.model.util.FileCreator;
 import requirement_t7.model.util.FileToStringReader;
@@ -81,5 +82,13 @@ public class Game {
 
     public void setInputClassName(String inputClassName) {
         this.inputClassName = inputClassName;
+    }
+
+    public String getInputClassName() {
+        return this.inputClassName;
+    }
+
+    public String getInputTestClassName() {
+        return this.inputTestClassName;
     }
 }
