@@ -22,7 +22,6 @@ public class Compilation {
         compiler.getTask(null, manager, null, null, null, files).call();
 
         //Load and instantiate the class
-        Class<?> clazz = manager.getClassLoader(null).loadClass(className);
-        return clazz;
+        return manager.getClassLoader(null).loadClass(className);
     }
 }

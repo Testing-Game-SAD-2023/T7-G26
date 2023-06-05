@@ -18,6 +18,8 @@ public class FileCreator {
             bw.close();
             System.out.println("File created successfully.");
 
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
