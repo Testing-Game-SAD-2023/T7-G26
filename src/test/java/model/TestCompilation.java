@@ -1,11 +1,9 @@
 package model;
 
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import requirement_t7.classLoaded.InputClass;
 import requirement_t7.model.Compilation;
 import requirement_t7.model.Game;
-import requirement_t7.model.InputClass;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

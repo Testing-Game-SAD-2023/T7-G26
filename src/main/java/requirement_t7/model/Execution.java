@@ -98,6 +98,7 @@ public class Execution {
                         for (Element counter : counters) {
                             String type = counter.attr("type");
                             if(type.equals("LINE")){
+                                System.out.println(counter.getAllElements());
                                 coveredLines += Integer.parseInt(counter.attr("covered"));
                                 missedLines += Integer.parseInt(counter.attr("missed"));
                             }
