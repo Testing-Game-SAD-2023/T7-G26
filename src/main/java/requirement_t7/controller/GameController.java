@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import requirement_t7.model.Game;
 
 @RestController
-public class Controller {
+public class GameController {
 
     @Autowired
     private Game game;
