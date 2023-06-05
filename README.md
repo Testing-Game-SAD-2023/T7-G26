@@ -9,7 +9,9 @@
 ## Description
 
 The application must offer the functionality of compiling and executing test cases written by the player.
+
 This functionality will receive two text files as input (class to test and test class) and will launch the compiler and the test executor, returning information relating to the outcome of the compilation (if incorrect) or the outcome of the tests as output performed.
+
 The outcome of the execution must be processed in such a way as to extract from them the relevant information for the purposes of the game (for example the presence of errors in compiling the test, or the outcome of the execution of the test, such as for example the coverage of the code, etc.).
 
 
