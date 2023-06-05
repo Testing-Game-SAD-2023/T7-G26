@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import requirement_t7.model.Game;
 
 @RestController
-public class Controller {
+public class GameController {
 
     @Autowired
     private Game game;
@@ -19,6 +19,8 @@ public class Controller {
 
     @RequestMapping(value = "/compile",method = RequestMethod.POST)
     public String compile(){
+        game.setInputClassName("InputClass");
+        game.setInputTestClassName("InputTestClass");
         return game.compile();
     }
 }
