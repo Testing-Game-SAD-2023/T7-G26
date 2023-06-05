@@ -2,11 +2,10 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import requirement_t7.model.Game;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGame {
     private Game game;
@@ -38,7 +37,13 @@ public class TestGame {
     @Test
     public void testErrorInCompilation(){
         game.setInputTestClassName("TestingFile");
-        assertThrows(Exception.class, () -> game.compile() );
+        assertTrue(game.compile().contains("Error in compiling"));
+    }
+
+    @Test
+    public void testErrorInCompilation2(){
+        game.setInputClassName("TestingFile");
+        assertTrue(game.compile().contains("Error in compiling"));
     }
 
     @Test
