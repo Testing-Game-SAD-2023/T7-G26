@@ -19,20 +19,10 @@ public class Compilation {
         List<JavaFileObject> files = new ArrayList<JavaFileObject>();
         files.add(new CharSequenceJavaFileObject(className, code));
 
-        boolean success = compiler.getTask(null, manager, null, null, null, files).call();
+        compiler.getTask(null, manager, null, null, null, files).call();
 
         //Load and instantiate the class
         Class<?> clazz = manager.getClassLoader(null).loadClass(className);
-
-        // Call the CompilationTask's call method to compile the code
-
-        if (success) {
-            // Load the compiled class
-            return clazz;
-        } else {
-            throw new Exception("Compilation failed.");
-        }
-
-        //return clas;
+        return clazz;
     }
 }

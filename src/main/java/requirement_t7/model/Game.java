@@ -83,12 +83,4 @@ public class Game {
     public void setInputClassName(String inputClassName) {
         this.inputClassName = inputClassName;
     }
-
-    public String getInputClassName() {
-        return this.inputClassName;
-    }
-
-    public String getInputTestClassName() {
-        return this.inputTestClassName;
-    }
 }
