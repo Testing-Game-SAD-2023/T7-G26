@@ -19,6 +19,8 @@ public class GameController {
 
     @RequestMapping(value = "/compile",method = RequestMethod.POST)
     public String compile(){
+        game.setInputClassName("InputClass");
+        game.setInputTestClassName("InputTestClass");
         return game.compile();
     }
 }

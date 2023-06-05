@@ -1,0 +1,1 @@
+package requirement_t7.model;public class InputClass {    public static String evenOrOdd(int num) {        if (num % 2 == 0) {            return "even";        } else {            return "odd";        }    }}

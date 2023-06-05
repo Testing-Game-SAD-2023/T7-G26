@@ -24,20 +24,10 @@ public class Compilation {
         options.add("-classpath");
         options.add(System.getProperty("java.class.path"));
 
-        boolean success = compiler.getTask(null, manager, null, options, null, files).call();
+        compiler.getTask(null, manager, null, null, null, files).call();
 
         //Load and instantiate the class
-        Class<?> clazz = manager.getClassLoader(null).loadClass(className);
-
-
-        if (success) {
-            // Load the compiled class
-            return clazz;
-        } else {
-            throw new Exception("Compilation failed.");
-        }
-
-        //return clas;
+        return manager.getClassLoader(null).loadClass(className);
     }
 
     public static Class<?> compileClass2() throws Exception {
