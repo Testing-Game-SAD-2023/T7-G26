@@ -7,11 +7,14 @@ import requirement_t7.model.util.FileCreator;
 import requirement_t7.model.util.FileToStringReader;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 @Service
 public class Game {
+
     private String inputTestClassName;
     private String inputClassName;
     private String inputClassCode;
@@ -28,7 +31,14 @@ public class Game {
     private String obtainCode(String input){
         String res;
         try {
-            res = FileToStringReader.convert(new File(input + ".txt"));
+            StringBuilder stringBuilder = new StringBuilder();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(input+".txt"));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            bufferedReader.close();
+            res = stringBuilder.toString();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -36,10 +46,8 @@ public class Game {
     }
 
     public String compile(){
-        //Obtain the code from the files
         inputClassCode = obtainCode(inputClassName);
         inputTestClassCode = obtainCode(inputTestClassName);
-
         //Compile input class
         try {
             compileClass();
@@ -68,11 +76,11 @@ public class Game {
     }
 
     private void compileTest() throws Exception {
-        clazz = Compilation.compileClass("requirement_t7.model."+ inputTestClassName,inputTestClassCode);
+        clazz = Compilation.compileClass("requirement_t7.classLoaded."+ inputTestClassName,inputTestClassCode);
     }
 
     private void compileClass() throws Exception {
-        Compilation.compileClass("requirement_t7.model." + inputClassName,inputClassCode);
+        Compilation.compileClass("requirement_t7.classLoaded." + inputClassName,inputClassCode);
         fileCreator.createFile(inputClassName,inputClassCode);
     }
 
