@@ -14,6 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Execution {
@@ -27,14 +28,18 @@ public class Execution {
             res += failure.toString() + "\n";
         }
 
-        doCoverage();
+        try {
+            doCoverage();
+        } catch (InterruptedException e) {
+
+        }
 
         res += "\n Tests run: " + result.getRunCount() + ", Failures: " + result.getFailureCount() + ", Ignored: " + result.getIgnoreCount();
         res+= "\n"+getCoverage();
         return res;
     }
 
-    public static void doCoverage(){
+    public static void doCoverage() throws InterruptedException {
         try {
             // Obtener la ruta del directorio actual del proyecto
             String projectDir = System.getProperty("user.dir");
@@ -52,10 +57,19 @@ public class Execution {
             String reportXmlPath = "coverage/report.xml";
 
             // Crear el proceso para ejecutar el comando
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    "java", "-jar", jacocoJarPath, "report", coverageExecPath,
-                    "--xml", reportXmlPath, "--classfiles", classFilesPath
-            );
+            List<String> command = new ArrayList<>();
+            command.add("java");
+            command.add("-jar");
+            command.add(jacocoJarPath);
+            command.add("report");
+            command.add(coverageExecPath);
+            command.add("--xml");
+            command.add(reportXmlPath);
+            command.add("--classfiles");
+            command.add(classFilesPath);
+
+            // Establecer el directorio base del proceso
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
 
             // Establecer el directorio base del proceso
             processBuilder.directory(new File(projectDir));
@@ -72,7 +86,7 @@ public class Execution {
             } else {
                 System.err.println("Ocurrió un error al generar el informe de cobertura.");
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
         }
     }
 
@@ -119,7 +133,6 @@ public class Execution {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
         }
         // Print coverage percentage
         return res;
