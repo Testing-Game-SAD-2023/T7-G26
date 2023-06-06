@@ -1,6 +1,5 @@
 package requirement_t7.model;
 
-import org.jdom2.input.SAXBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,9 +8,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import javax.lang.model.util.Elements;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,13 +73,8 @@ public class Execution {
 
             // Ejecutar el comando
             Process process = processBuilder.start();
-            int exitCode = process.waitFor();
+            process.waitFor();
 
-            if (exitCode == 0) {
-                System.out.println("Informe de cobertura generado exitosamente.");
-            } else {
-                System.err.println("Ocurrió un error al generar el informe de cobertura.");
-            }
         } catch (IOException e){
 
         } catch( InterruptedException e) {
@@ -112,7 +103,6 @@ public class Execution {
                         for (Element counter : counters) {
                             String type = counter.attr("type");
                             if(type.equals("LINE")){
-                                System.out.println(counter.getAllElements());
                                 coveredLines += Integer.parseInt(counter.attr("covered"));
                                 missedLines += Integer.parseInt(counter.attr("missed"));
                             }
