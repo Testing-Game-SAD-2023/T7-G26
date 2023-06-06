@@ -20,23 +20,31 @@ public class TestExecution {
     public void testExecutionCorrectly(){
         Class<?> clazz = null;
         try {
-            clazz = Compilation.compileClass("requirement_t7.model.InputTestClass", "package requirement_t7.model;\n" +
+            clazz = Compilation.compileClass("requirement_t7.classLoaded.InputTestClass", "package requirement_t7.classLoaded;\n" +
+                    "import org.junit.BeforeClass;\n" +
                     "import org.junit.Test;\n" +
+                    "\n" +
                     "import static org.junit.Assert.assertEquals;\n" +
                     "\n" +
                     "\n" +
                     "public class InputTestClass {\n" +
+                    "    private static InputClass inputClass;\n" +
+                    "    @BeforeClass\n" +
+                    "    public static void init(){\n" +
+                    "        inputClass = new InputClass();\n" +
+                    "    }\n" +
+                    "\n" +
                     "    @Test\n" +
                     "    public void testEvenNumber() {\n" +
                     "        int num = 4;\n" +
-                    "        String result = InputClass.evenOrOdd(num);\n" +
+                    "        String result = inputClass.evenOrOdd(num);\n" +
                     "        assertEquals(\"even\", result);\n" +
                     "    }\n" +
                     "\n" +
                     "    @Test\n" +
                     "    public void testOddNumber() {\n" +
                     "        int num = 7;\n" +
-                    "        String result = InputClass.evenOrOdd(num);\n" +
+                    "        String result = inputClass.evenOrOdd(num);\n" +
                     "        assertEquals(\"odd\", result);\n" +
                     "    }\n" +
                     "}");
@@ -49,23 +57,31 @@ public class TestExecution {
     public void testExecutionFailure(){
         Class<?> clazz = null;
         try {
-            clazz = Compilation.compileClass("requirement_t7.model.InputTestClass", "package requirement_t7.model;\n" +
+            clazz = Compilation.compileClass("requirement_t7.classLoaded.InputTestClass", "package requirement_t7.classLoaded;\n" +
+                    "import org.junit.BeforeClass;\n" +
                     "import org.junit.Test;\n" +
+                    "\n" +
                     "import static org.junit.Assert.assertEquals;\n" +
                     "\n" +
                     "\n" +
                     "public class InputTestClass {\n" +
+                    "    private static InputClass inputClass;\n" +
+                    "    @BeforeClass\n" +
+                    "    public static void init(){\n" +
+                    "        inputClass = new InputClass();\n" +
+                    "    }\n" +
+                    "\n" +
                     "    @Test\n" +
                     "    public void testEvenNumber() {\n" +
                     "        int num = 4;\n" +
-                    "        String result = InputClass.evenOrOdd(num);\n" +
+                    "        String result = inputClass.evenOrOdd(num);\n" +
                     "        assertEquals(\"odd\", result);\n" +
                     "    }\n" +
                     "\n" +
                     "    @Test\n" +
                     "    public void testOddNumber() {\n" +
                     "        int num = 7;\n" +
-                    "        String result = InputClass.evenOrOdd(num);\n" +
+                    "        String result = inputClass.evenOrOdd(num);\n" +
                     "        assertEquals(\"even\", result);\n" +
                     "    }\n" +
                     "}");

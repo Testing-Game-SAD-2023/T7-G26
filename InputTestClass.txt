@@ -1,20 +1,28 @@
-package requirement_t7.model;
+package requirement_t7.classLoaded;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 
 public class InputTestClass {
+    private static InputClass inputClass;
+    @BeforeClass
+    public static void init(){
+        inputClass = new InputClass();
+    }
+
     @Test
     public void testEvenNumber() {
         int num = 4;
-        String result = InputClass.evenOrOdd(num);
+        String result = inputClass.evenOrOdd(num);
         assertEquals("even", result);
     }
 
     @Test
     public void testOddNumber() {
         int num = 7;
-        String result = InputClass.evenOrOdd(num);
+        String result = inputClass.evenOrOdd(num);
         assertEquals("odd", result);
     }
 }
