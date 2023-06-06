@@ -73,7 +73,6 @@ public class Execution {
                 System.err.println("Ocurrió un error al generar el informe de cobertura.");
             }
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
