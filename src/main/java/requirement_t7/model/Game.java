@@ -1,14 +1,10 @@
 package requirement_t7.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import requirement_t7.model.util.FileCreator;
-import requirement_t7.model.util.FileToStringReader;
 
-import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
