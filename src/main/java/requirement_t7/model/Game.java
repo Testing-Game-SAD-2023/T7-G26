@@ -15,8 +15,8 @@ import java.io.IOException;
 @Service
 public class Game {
 
-    private String inputTestClassName = "InputTestClass";
-    private String inputClassName = "InputClass";
+    private String inputTestClassName;
+    private String inputClassName;
     private String inputClassCode;
     private String inputTestClassCode;
 
@@ -26,15 +26,6 @@ public class Game {
     private Class<?> clazz;
 
     public Game(){
-        inputClassCode = obtainCode(inputClassName);
-        inputTestClassCode = obtainCode(inputTestClassName);
-        //Compile input class
-        try {
-            compileClass();
-        } catch (Exception e) {
-            //Return String with error if something fails
-            System.out.println( "Error in compiling" + inputClassName + " => " + e.getMessage());
-        }
     }
 
     private String obtainCode(String input){
@@ -55,6 +46,15 @@ public class Game {
     }
 
     public String compile(){
+        inputClassCode = obtainCode(inputClassName);
+        inputTestClassCode = obtainCode(inputTestClassName);
+        //Compile input class
+        try {
+            compileClass();
+        } catch (Exception e) {
+            //Return String with error if something fails
+            return "Error in compiling" + inputClassName + " => " + e.getMessage();
+        }
         try {
             compileTest();
         } catch (Exception e) {
