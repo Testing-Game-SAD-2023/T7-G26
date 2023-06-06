@@ -28,18 +28,16 @@ public class Execution {
             res += failure.toString() + "\n";
         }
 
-        try {
-            doCoverage();
-        } catch (InterruptedException e) {
 
-        }
+        doCoverage();
+
 
         res += "\n Tests run: " + result.getRunCount() + ", Failures: " + result.getFailureCount() + ", Ignored: " + result.getIgnoreCount();
         res+= "\n"+getCoverage();
         return res;
     }
 
-    public static void doCoverage() throws InterruptedException {
+    public static void doCoverage(){
         try {
             // Obtener la ruta del directorio actual del proyecto
             String projectDir = System.getProperty("user.dir");
@@ -86,7 +84,10 @@ public class Execution {
             } else {
                 System.err.println("Ocurrió un error al generar el informe de cobertura.");
             }
-        } catch (IOException e) {
+        } catch (IOException e){
+
+        } catch( InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -122,7 +123,9 @@ public class Execution {
 
             // Calculate coverage percentage
             int totalLines = coveredLines + missedLines;
-            double coveragePercentage = (double) coveredLines / totalLines * 100;
+            double coveragePercentage =0;
+            if(totalLines!=0)
+                coveragePercentage = (double) coveredLines / totalLines * 100;
 
             // Print the coverage results
             res+="\n Total Lines: " + totalLines;
