@@ -30,10 +30,16 @@ The outcome of the execution must be processed in such a way as to extract from 
 
 ## How to run
 
-To start the project you have to run:
+To start the project on local you have to run:
 
 ```bash
 T7Application.java
+```
+
+Important! You need this configuration on the VM options of T7Application.java:
+
+```bash
+-javaagent:"lib/jacocoagent.jar=destfile=coverage/coverage.exec"
 ```
 
 Then open your browser in:
