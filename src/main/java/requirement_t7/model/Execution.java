@@ -45,7 +45,7 @@ public class Execution {
             String coverageExecPath = "coverage/coverage.exec";
 
             // Definir la ruta al directorio de clase (classfiles) (relativa al directorio del proyecto)
-            String classFilesPath = "target";
+            String classFilesPath = "target/classes";
 
             // Definir la ruta al archivo de informe XML (relativa al directorio del proyecto)
             String reportXmlPath = "coverage/report.xml";
