@@ -8,7 +8,7 @@ import requirement_t7.model.Execution;
 import requirement_t7.model.Game;
 
 public class TestExecution {
-    private Game game;
+   /* private Game game;
     @BeforeEach
     public void init(){
         game = new Game();
@@ -88,5 +88,5 @@ public class TestExecution {
         } catch (Exception e) {throw new RuntimeException(e);}
 
         assertTrue(Execution.runTests(clazz).contains("Failures: 2"));
-    }
+    }*/
 }

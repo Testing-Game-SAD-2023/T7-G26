@@ -7,86 +7,49 @@ import org.jsoup.parser.Parser;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+import requirement_t7.model.util.CommandExecution;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Execution {
-    public static String runTests(Class<?> testClass) {
+
+    public static String runTests(){
         String res = "";
-        // Run the JUnit tests
-        Result result = JUnitCore.runClasses(testClass);
 
-        // Print the results
-        for (Failure failure : result.getFailures()) {
-            res += failure.toString() + "\n";
-        }
+        // Maven command for executing the test
+        String[] command = {"cmd.exe","/c","mvn", "test", "-Dtest=InputTestClass"};
 
-
-        doCoverage();
-
-
-        res += "\n Tests run: " + result.getRunCount() + ", Failures: " + result.getFailureCount() + ", Ignored: " + result.getIgnoreCount();
-        res+= "\n"+getCoverage();
-        return res;
-    }
-
-    public static void doCoverage(){
+        CommandExecution process = new CommandExecution();
+        InputStream inputStream = process.executeCommand(command);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        //doCoverage();
         try {
-            // Obtener la ruta del directorio actual del proyecto
-            String projectDir = System.getProperty("user.dir");
-
-            // Definir la ruta al archivo JAR de jacococli.jar (relativa al directorio del proyecto)
-            String jacocoJarPath = "lib/jacococli.jar";
-
-            // Definir la ruta al archivo coverage.exec (relativa al directorio del proyecto)
-            String coverageExecPath = "coverage/coverage.exec";
-
-            // Definir la ruta al directorio de clase (classfiles) (relativa al directorio del proyecto)
-            String classFilesPath = "target/classes";
-
-            // Definir la ruta al archivo de informe XML (relativa al directorio del proyecto)
-            String reportXmlPath = "coverage/report.xml";
-
-            // Crear el proceso para ejecutar el comando
-            List<String> command = new ArrayList<>();
-            command.add("java");
-            command.add("-jar");
-            command.add(jacocoJarPath);
-            command.add("report");
-            command.add(coverageExecPath);
-            command.add("--xml");
-            command.add(reportXmlPath);
-            command.add("--classfiles");
-            command.add(classFilesPath);
-
-            // Establecer el directorio base del proceso
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
-
-            // Establecer el directorio base del proceso
-            processBuilder.directory(new File(projectDir));
-
-            // Redirigir la salida estándar y la salida de error del proceso a la consola
-            processBuilder.inheritIO();
-
-            // Ejecutar el comando
-            Process process = processBuilder.start();
-            process.waitFor();
-
-        } catch (IOException e){
-
-        } catch( InterruptedException e) {
-            Thread.currentThread().interrupt();
+            String line;
+            boolean f=false;
+            while ((line = reader.readLine()) != null) {
+                if(line.contains("Results:"))
+                    f=true;
+                else if(line.contains("--- "))
+                    f=false;
+                else if(f) {
+                    res += line.substring(7) + "\n";
+                    System.out.println(line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        res+=getCoverage();
+        return res;
     }
 
     public static String getCoverage(){
         String res="";
         try {
             // Load the XML file
-            File inputFile = new File("coverage/report.xml");
+            File inputFile = new File("target/site/jacoco/jacoco.xml");
             Document document = Jsoup.parse(inputFile, null, "", Parser.xmlParser());
 
             // Find the coverage data

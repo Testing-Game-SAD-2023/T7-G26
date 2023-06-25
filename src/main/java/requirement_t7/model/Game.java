@@ -19,7 +19,7 @@ public class Game {
     @Autowired
     private FileCreator fileCreator;
 
-    private Class<?> clazz;
+    private boolean compiled;
 
     public Game(){
     }
@@ -44,40 +44,49 @@ public class Game {
     public String compile(){
         inputClassCode = obtainCode(inputClassName);
         inputTestClassCode = obtainCode(inputTestClassName);
+        String res="";
+        compiled=false;
         //Compile input class
         try {
-            compileClass();
+            res+=compileClass();
         } catch (Exception e) {
             //Return String with error if something fails
             return "Error in compiling" + inputClassName + " => " + e.getMessage();
         }
         try {
-            compileTest();
+            res+=compileTest();
         } catch (Exception e) {
             return "Error in compiling" + inputTestClassName + " => " + e.getMessage();
         }
-        return "Compiled";
+        if(res.equals("")) {
+            compiled = true;
+            res="Compiled!";
+        }
+        return res;
     }
 
     public String execute(){
         String res;
-        if(clazz != null){
-            //Run the test
-            res = Execution.runTests(clazz);
-        }
+        if(compiled){
+        //Run the test
+        res= Execution.runTests();
+       }
         else{
             res = "Cannot execute because you have not compiled";
         }
         return res;
     }
 
-    private void compileTest() throws Exception {
-        clazz = Compilation.compileClass("requirement_t7.classLoaded."+ inputTestClassName,inputTestClassCode);
+    private String compileTest() throws Exception {
+        fileCreator.createFile("src/test/java/requirement_t7/classLoaded/"+inputTestClassName,inputTestClassCode);
+        String res = Compilation.compileTest();
+        return res;
     }
 
-    private void compileClass() throws Exception {
-        Compilation.compileClass("requirement_t7.classLoaded." + inputClassName,inputClassCode);
-        fileCreator.createFile(inputClassName,inputClassCode);
+    private String compileClass() throws Exception {
+        fileCreator.createFile("src/main/java/requirement_t7/classLoaded/"+inputClassName,inputClassCode);
+        String res= Compilation.compileClass();
+        return res;
     }
 
     public void setInputTestClassName(String inputTestClassName) {
