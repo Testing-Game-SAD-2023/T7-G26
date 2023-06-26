@@ -19,7 +19,15 @@ public class Execution {
         String res = "";
 
         // Maven command for executing the test
-        String[] command = {"cmd.exe","/c","mvn", "test", "-Dtest=InputTestClass"};
+        String[] command = null;
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            //Windows
+            command = new String[]{"cmd.exe", "/c", "mvn", "test", "-Dtest=InputTestClass"};
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            //Linux or macOS
+            command = new String[]{"mvn", "test", "-Dtest=InputTestClass"};
+        }
 
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);
