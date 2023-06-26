@@ -12,11 +12,14 @@ import javax.tools.JavaCompiler;
 
 import javassist.*;
 import requirement_t7.model.util.CommandExecution;
+import requirement_t7.model.util.FileCreator;
 
 
 public class Compilation {
 
-    public static String compileClass() throws IOException {
+    public static String compileClass(String inputClassName, String inputClassCode){
+        FileCreator.createFile("src/main/java/requirement_t7/"+inputClassName,inputClassCode);
+
         String res = "";
         // Compile the class
         String[] command = null;
@@ -28,7 +31,6 @@ public class Compilation {
             //Linux o macOS
             command = new String[]{"mvn", "compile"};
         }
-        //String[] command = {"cmd.exe", "/c", "mvn", "compile"};
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -36,7 +38,9 @@ public class Compilation {
         return res;
     }
 
-    public static String compileTest() {
+    public static String compileTest(String inputTestClassName, String inputTestClassCode){
+        FileCreator.createFile("src/test/java/requirement_t7/"+inputTestClassName,inputTestClassCode);
+
         String res = "";
         // Compile the test class
 
@@ -44,10 +48,10 @@ public class Compilation {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             //Windows
-            command = new String[]{"cmd.exe", "/c", "mvn", "test", "-Dtest=InputTestClass"};
+            command = new String[]{"cmd.exe", "/c", "mvn", "test", "-Dtest="+inputTestClassName};
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
             //Linux or macOS
-            command = new String[]{"mvn", "test", "-Dtest=InputTestClass"};
+            command = new String[]{"mvn", "test", "-Dtest="+inputTestClassName};
         }
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);

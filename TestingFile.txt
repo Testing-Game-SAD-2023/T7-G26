@@ -3,6 +3,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 
-public class InputTestClass {
+public class TestingFile {
     Im an error :D
 }

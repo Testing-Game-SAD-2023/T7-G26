@@ -3,6 +3,7 @@ package requirement_t7.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.FileDeletor;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +18,7 @@ public class Game {
     private String inputTestClassCode;
 
     @Autowired
-    private FileCreator fileCreator;
+    private FileDeletor fileDeletor;
 
     private boolean compiled;
 
@@ -44,20 +45,14 @@ public class Game {
     public String compile(){
         inputClassCode = obtainCode(inputClassName);
         inputTestClassCode = obtainCode(inputTestClassName);
+
         String res="";
         compiled=false;
+
         //Compile input class
-        try {
-            res+=compileClass();
-        } catch (Exception e) {
-            //Return String with error if something fails
-            return "Error in compiling" + inputClassName + " => " + e.getMessage();
-        }
-        try {
-            res+=compileTest();
-        } catch (Exception e) {
-            return "Error in compiling" + inputTestClassName + " => " + e.getMessage();
-        }
+        res+=compileClass();
+        res+=compileTest();
+
         if(res.equals("")) {
             compiled = true;
             res="Compiled";
@@ -74,19 +69,19 @@ public class Game {
         else{
             res = "Cannot execute because you have not compiled";
         }
+
+        fileDeletor.deleteFile("src/main/java/requirement_t7/"+inputClassName+".java");
+        fileDeletor.deleteFile("src/test/java/requirement_t7/"+inputTestClassName+".java");
+
         return res;
     }
 
-    private String compileTest() throws Exception {
-        fileCreator.createFile("src/test/java/requirement_t7/"+inputTestClassName,inputTestClassCode);
-        String res = Compilation.compileTest();
-        return res;
+    private String compileTest(){
+        return Compilation.compileTest(inputTestClassName, inputTestClassCode);
     }
 
-    private String compileClass() throws Exception {
-        fileCreator.createFile("src/main/java/requirement_t7/"+inputClassName,inputClassCode);
-        String res= Compilation.compileClass();
-        return res;
+    private String compileClass(){
+        return Compilation.compileClass(inputClassName,inputClassCode);
     }
 
     public void setInputTestClassName(String inputTestClassName) {

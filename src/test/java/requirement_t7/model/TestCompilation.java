@@ -1,33 +1,54 @@
 package requirement_t7.model;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import requirement_t7.model.util.FileDeletor;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCompilation {
-   /* @Test
-    public void testCompilationError(){
-        assertThrows(Exception.class, () -> Compilation.compileClass("Name", "I am an error in the code"));
+    @Test
+    public void testCompilationTestError(){
+        assertTrue(Compilation.compileTest("TestingFile", "I am an error").contains("[ERROR]"));
+        FileDeletor.deleteFile("src/test/java/requirement_t7/TestingFile.java");
     }
 
     @Test
-    public void testCompilationSuccessful(){
-        Game game = new Game();
-        game.setInputClassName("InputClass");
-        game.setInputTestClassName("InputTestClass");
-        game.compile();
+    public void testCompilationTestSuccessful(){
+        assertTrue(Compilation.compileTest("InputTestClass", "package requirement_t7;\n" +
+                "import org.junit.Test;\n" +
+                "\n" +
+                "import static org.junit.Assert.assertEquals;\n" +
+                "\n" +
+                "\n" +
+                "public class InputTestClass {\n" +
+                "    @Test\n" +
+                "    public void test1(){\n" +
+                "        assertEquals(5, 5);\n" +
+                "    }" +
+                "}").equals(""));
+        FileDeletor.deleteFile("src/test/java/requirement_t7/InputTestClass.java");
+    }
 
-        try {
-            assertEquals(InputClass.class , Compilation.compileClass("InputClass", "package requirement_t7.model;\n" +
-                    "public class InputClass {\n" +
-                    "    public static String evenOrOdd(int num) {\n" +
-                    "        if (num % 2 == 0) {\n" +
-                    "            return \"even\";\n" +
-                    "        } else {\n" +
-                    "            return \"odd\";\n" +
-                    "        }\n" +
-                    "    }\n" +
-                    "}"));
-        } catch (Exception e) {
-        }
-    }*/
+    @Test
+    public void testCompilationClassSuccessful(){
+        assertTrue(Compilation.compileClass("InputClass", "package requirement_t7;\n" +
+                "public class InputClass {\n" +
+                "\n" +
+                "    public InputClass(){}\n" +
+                "    public String evenOrOdd(int num) {\n" +
+                "        if (num % 2 == 0) {\n" +
+                "            return \"even\";\n" +
+                "        } else {\n" +
+                "            return \"odd\";\n" +
+                "        }\n" +
+                "    }\n" +
+                "}").equals(""));
+        FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
+    }
+
+    @Test
+    public void testCompilationClassError(){
+        assertTrue(Compilation.compileClass("TestingFile", "I am an error").contains("[ERROR]"));
+        FileDeletor.deleteFile("src/main/java/requirement_t7/TestingFile.java");
+    }
 }
