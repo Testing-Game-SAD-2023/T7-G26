@@ -36,12 +36,6 @@ To start the project on local you have to run:
 T7Application.java
 ```
 
-Important! You need this configuration on the VM options of T7Application.java:
-
-```bash
--javaagent:"lib/jacocoagent.jar=destfile=coverage/coverage.exec"
-```
-
 Then open your browser in:
 
 ```bash
