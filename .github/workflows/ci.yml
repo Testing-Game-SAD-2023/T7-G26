@@ -1,4 +1,4 @@
-name: Workflow for SAD-T7
+  name: Workflow for Tests T7-G26
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=PabloGarciaFernandez_Software-Architecture-Design-Project
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Testing-Game-SAD-2023_T7-G26
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
