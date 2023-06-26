@@ -10,7 +10,7 @@ import java.io.IOException;
 @Component
 public class FileCreator {
     public static File createFile(String name, String code) {
-        File file = new File("src/main/java/requirement_t7/classLoaded/"+name+".java");
+        File file = new File(name+".java");
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile());
              BufferedWriter bw = new BufferedWriter(fw);){
 
