@@ -3,6 +3,7 @@ package requirement_t7.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.FileDeletor;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,9 +18,9 @@ public class Game {
     private String inputTestClassCode;
 
     @Autowired
-    private FileCreator fileCreator;
+    private FileDeletor fileDeletor;
 
-    private Class<?> clazz;
+    private boolean compiled;
 
     public Game(){
     }
@@ -44,40 +45,43 @@ public class Game {
     public String compile(){
         inputClassCode = obtainCode(inputClassName);
         inputTestClassCode = obtainCode(inputTestClassName);
-        //Compile input class
-        try {
-            compileClass();
-        } catch (Exception e) {
-            //Return String with error if something fails
-            return "Error in compiling" + inputClassName + " => " + e.getMessage();
-        }
-        try {
-            compileTest();
-        } catch (Exception e) {
-            return "Error in compiling" + inputTestClassName + " => " + e.getMessage();
-        }
-        return "Compiled";
-    }
 
-    public String execute(){
-        String res;
-        if(clazz != null){
-            //Run the test
-            res = Execution.runTests(clazz);
-        }
-        else{
-            res = "Cannot execute because you have not compiled";
+        String res="";
+        compiled=false;
+
+        //Compile input class
+        res+=compileClass();
+        res+=compileTest();
+
+        if(res.equals("")) {
+            compiled = true;
+            res="Compiled";
         }
         return res;
     }
 
-    private void compileTest() throws Exception {
-        clazz = Compilation.compileClass("requirement_t7.classLoaded."+ inputTestClassName,inputTestClassCode);
+    public String execute(){
+        String res;
+        if(compiled){
+        //Run the test
+        res= Execution.runTests();
+       }
+        else{
+            res = "Cannot execute because you have not compiled";
+        }
+
+        fileDeletor.deleteFile("src/main/java/requirement_t7/"+inputClassName+".java");
+        fileDeletor.deleteFile("src/test/java/requirement_t7/"+inputTestClassName+".java");
+
+        return res;
     }
 
-    private void compileClass() throws Exception {
-        Compilation.compileClass("requirement_t7.classLoaded." + inputClassName,inputClassCode);
-        fileCreator.createFile(inputClassName,inputClassCode);
+    private String compileTest(){
+        return Compilation.compileTest(inputTestClassName, inputTestClassCode);
+    }
+
+    private String compileClass(){
+        return Compilation.compileClass(inputClassName,inputClassCode);
     }
 
     public void setInputTestClassName(String inputTestClassName) {

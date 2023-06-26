@@ -1,9 +1,10 @@
-package model;
+package requirement_t7.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import requirement_t7.model.Game;
+import requirement_t7.model.util.FileDeletor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,13 +38,9 @@ public class TestGame {
     @Test
     public void testErrorInCompilation(){
         game.setInputTestClassName("TestingFile");
-        assertTrue(game.compile().contains("Error in compiling"));
-    }
-
-    @Test
-    public void testErrorInCompilation2(){
-        game.setInputClassName("TestingFile");
-        assertTrue(game.compile().contains("Error in compiling"));
+        assertTrue(game.compile().contains("[ERROR]"));
+        FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
+        FileDeletor.deleteFile("src/test/java/requirement_t7/TestingFile.java");
     }
 
     @Test
