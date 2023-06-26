@@ -48,10 +48,10 @@ public class Compilation {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             //Windows
-            command = new String[]{"cmd.exe", "/c", "mvn", "test", "-Dtest="+inputTestClassName};
+            command = new String[]{"cmd.exe", "/c", "mvn", "test-compile", "-Dtest="+inputTestClassName};
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
             //Linux or macOS
-            command = new String[]{"mvn", "test", "-Dtest="+inputTestClassName};
+            command = new String[]{"mvn", "test-compile", "-Dtest="+inputTestClassName};
         }
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);
