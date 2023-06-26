@@ -57,7 +57,7 @@ application.properties
 To execute the tests you either can execute this file or use the following command:
 
 ```bash
-TestSuite.java
+requirement_t7.TestSuite.java
 ```
 ```bash
 mvn -B test

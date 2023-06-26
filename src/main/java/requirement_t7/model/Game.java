@@ -78,7 +78,7 @@ public class Game {
     }
 
     private String compileTest() throws Exception {
-        fileCreator.createFile("src/test/java/"+inputTestClassName,inputTestClassCode);
+        fileCreator.createFile("src/test/java/requirement_t7/"+inputTestClassName,inputTestClassCode);
         String res = Compilation.compileTest();
         return res;
     }

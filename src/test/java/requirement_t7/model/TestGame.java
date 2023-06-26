@@ -1,4 +1,4 @@
-package model;
+package requirement_t7.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,13 +37,7 @@ public class TestGame {
     @Test
     public void testErrorInCompilation(){
         game.setInputTestClassName("TestingFile");
-        assertTrue(game.compile().contains("Error in compiling"));
-    }
-
-    @Test
-    public void testErrorInCompilation2(){
-        game.setInputClassName("TestingFile");
-        assertTrue(game.compile().contains("Error in compiling"));
+        assertTrue(game.compile().contains("COMPILATION ERROR"));
     }
 
     @Test

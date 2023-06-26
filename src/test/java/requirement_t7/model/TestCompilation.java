@@ -1,4 +1,4 @@
-package model;
+package requirement_t7.model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

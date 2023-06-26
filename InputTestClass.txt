@@ -1,4 +1,4 @@
-package requirement_t7.classLoaded;
+package requirement_t7;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

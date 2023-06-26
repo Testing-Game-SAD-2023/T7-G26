@@ -45,7 +45,7 @@
                 </dependencies>
                 <configuration>
                     <includes>
-                        <include>TestSuite.java</include>
+                        <include>requirement_t7.TestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

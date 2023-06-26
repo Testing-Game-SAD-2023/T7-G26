@@ -1,4 +1,4 @@
-package requirement_t7.classLoaded;
+package requirement_t7;
 public class InputClass {
 
     public InputClass(){}
