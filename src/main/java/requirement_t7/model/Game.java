@@ -60,7 +60,7 @@ public class Game {
         }
         if(res.equals("")) {
             compiled = true;
-            res="Compiled!";
+            res="Compiled";
         }
         return res;
     }
@@ -78,13 +78,13 @@ public class Game {
     }
 
     private String compileTest() throws Exception {
-        fileCreator.createFile("src/test/java/requirement_t7/classLoaded/"+inputTestClassName,inputTestClassCode);
+        fileCreator.createFile("src/test/java/"+inputTestClassName,inputTestClassCode);
         String res = Compilation.compileTest();
         return res;
     }
 
     private String compileClass() throws Exception {
-        fileCreator.createFile("src/main/java/requirement_t7/classLoaded/"+inputClassName,inputClassCode);
+        fileCreator.createFile("src/main/java/requirement_t7/"+inputClassName,inputClassCode);
         String res= Compilation.compileClass();
         return res;
     }

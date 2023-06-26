@@ -32,7 +32,6 @@ public class Execution {
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        //doCoverage();
         try {
             String line;
             boolean f=false;

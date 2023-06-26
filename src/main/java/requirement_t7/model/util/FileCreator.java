@@ -17,8 +17,6 @@ public class FileCreator {
             bw.write(code);
             bw.close();
             System.out.println("File created successfully.");
-            //return file;
-
         } catch (IOException e) {
             e.printStackTrace();
         }
