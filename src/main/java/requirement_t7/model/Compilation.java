@@ -78,7 +78,6 @@ public class Compilation {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
         }
         return res;
     }

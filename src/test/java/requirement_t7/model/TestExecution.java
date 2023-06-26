@@ -60,7 +60,7 @@ public class TestExecution {
         FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
     }
 
-    /*@Test
+    @Test
     public void testExecutionFailure(){
         Compilation.compileClass("InputClass", "package requirement_t7;\n" +
                 "public class InputClass {\n" +
@@ -106,5 +106,5 @@ public class TestExecution {
         assertTrue(Execution.runTests().contains("Failures: 2"));
         FileDeletor.deleteFile("src/test/java/requirement_t7/InputTestClass.java");
         FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
-    }*/
+    }
 }

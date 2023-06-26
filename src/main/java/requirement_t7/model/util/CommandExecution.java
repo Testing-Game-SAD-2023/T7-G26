@@ -20,11 +20,7 @@ public class CommandExecution {
 
             // Read the process output
             inputStream = process.getInputStream();
-            process.waitFor();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         return inputStream;
     }

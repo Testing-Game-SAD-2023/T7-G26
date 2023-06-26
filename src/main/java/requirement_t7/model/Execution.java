@@ -46,7 +46,6 @@ public class Execution {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
         res+=getCoverage();
         return res;
