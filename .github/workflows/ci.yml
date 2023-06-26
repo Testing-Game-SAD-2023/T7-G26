@@ -1,4 +1,4 @@
-  name: Workflow for Tests T7-G26
+name: Workflow for Tests T7-G26
 
 on:
   push:
