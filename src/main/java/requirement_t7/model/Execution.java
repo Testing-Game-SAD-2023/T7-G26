@@ -4,13 +4,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
 import requirement_t7.model.util.CommandExecution;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Execution {
@@ -96,7 +92,6 @@ public class Execution {
 
         } catch (Exception e) {
         }
-        // Print coverage percentage
         return res;
     }
 }
