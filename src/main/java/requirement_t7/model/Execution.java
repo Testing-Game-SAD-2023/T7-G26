@@ -87,9 +87,6 @@ public class Execution {
             res+="\n Covered Lines: " + coveredLines;
             res+="\n Missed Lines: " + missedLines;
             res+="\n Coverage Percentage: " + coveragePercentage + "%";
-
-
-
         } catch (Exception e) {
         }
         return res;
