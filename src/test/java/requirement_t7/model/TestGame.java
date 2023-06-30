@@ -19,24 +19,24 @@ public class TestGame {
     }
 
     @Test()
-    public void testFileInputTestClassNameIncorrectly(){
+    void testFileInputTestClassNameIncorrectly(){
         game.setInputTestClassName("IncorrectName");
         assertThrows(RuntimeException.class, () -> game.compile());
     }
 
     @Test()
-    public void testFileInputClassNameIncorrectly(){
+    void testFileInputClassNameIncorrectly(){
         game.setInputClassName("IncorrectName");
         assertThrows(RuntimeException.class, () -> game.compile());
     }
 
     @Test
-    public void testCompileCorrectly(){
+    void testCompileCorrectly(){
         assertEquals("Compiled", game.compile() );
     }
 
     @Test
-    public void testErrorInCompilation(){
+    void testErrorInCompilation(){
         game.setInputTestClassName("TestingFile");
         assertTrue(game.compile().contains("[ERROR]"));
         FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
@@ -44,12 +44,12 @@ public class TestGame {
     }
 
     @Test
-    public void testExecuteNotCompiled(){
+    void testExecuteNotCompiled(){
         assertEquals("Cannot execute because you have not compiled", game.execute());
     }
 
     @Test
-    public void testExecuteCorrectly(){
+    void testExecuteCorrectly(){
         game.compile();
         assertNotEquals("Cannot execute because you have not compiled", game.execute());
     }

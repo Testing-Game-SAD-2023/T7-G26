@@ -18,7 +18,7 @@ public class TestHomeController {
     private MockMvc mockMvc;
 
     @Test
-    public void testIndex() throws Exception {
+    void testIndex() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("home"));

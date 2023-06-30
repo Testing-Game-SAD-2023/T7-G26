@@ -25,7 +25,7 @@ public class TestGameController{
     private Game game;
 
     @Test
-    public void testExecuteEndpoint() throws Exception {
+    void testExecuteEndpoint() throws Exception {
         when(game.execute()).thenReturn("Execution Result");
 
         mockMvc.perform(post("/execute")
@@ -37,7 +37,7 @@ public class TestGameController{
     }
 
     @Test
-    public void testCompileEndpoint() throws Exception {
+    void testCompileEndpoint() throws Exception {
         when(game.compile()).thenReturn("Compilation Result");
 
         mockMvc.perform(post("/compile")

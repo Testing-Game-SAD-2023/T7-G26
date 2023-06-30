@@ -1,23 +1,18 @@
 package requirement_t7.model;
 
-
-import javax.tools.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import javax.tools.JavaCompiler;
-
-import javassist.*;
 import requirement_t7.model.util.CommandExecution;
 import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.Logger;
 
 
 public class Compilation {
 
     public static String compileClass(String inputClassName, String inputClassCode){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: compileClass()");
         FileCreator.createFile("src/main/java/requirement_t7/"+inputClassName,inputClassCode);
 
         String res = "";
@@ -39,6 +34,7 @@ public class Compilation {
     }
 
     public static String compileTest(String inputTestClassName, String inputTestClassCode){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: compileTest()");
         FileCreator.createFile("src/test/java/requirement_t7/"+inputTestClassName,inputTestClassCode);
 
         String res = "";
@@ -61,6 +57,7 @@ public class Compilation {
     }
 
     public static String readInputStream(BufferedReader reader) {
+        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: readInputStream()");
         String res = "";
         try {
             String line;
@@ -72,12 +69,11 @@ public class Compilation {
                     f = false;
                 else if (f && !line.contains("[INFO] -------------------------------------------------------------")) {
                     res += line + "\n";
-                    System.out.println(line);
                 }
-                System.out.println(line);
             }
 
         } catch (IOException e) {
+            Logger.getInstance().log(Logger.ERROR,e.getMessage());
         }
         return res;
     }

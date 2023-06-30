@@ -13,7 +13,7 @@ import requirement_t7.model.util.FileDeletor;
 
 public class TestExecution {
     @Test
-    public void testExecutionCorrectly(){
+    void testExecutionCorrectly(){
         Compilation.compileClass("InputClass", "package requirement_t7;\n" +
                 "public class InputClass {\n" +
                 "\n" +
@@ -61,7 +61,7 @@ public class TestExecution {
     }
 
     @Test
-    public void testExecutionFailure(){
+    void testExecutionFailure(){
         Compilation.compileClass("InputClass", "package requirement_t7;\n" +
                 "public class InputClass {\n" +
                 "\n" +
