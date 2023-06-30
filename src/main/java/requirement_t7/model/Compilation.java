@@ -1,16 +1,9 @@
 package requirement_t7.model;
 
-
-import javax.tools.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import javax.tools.JavaCompiler;
-
-import javassist.*;
 import requirement_t7.model.util.CommandExecution;
 import requirement_t7.model.util.FileCreator;
 
@@ -72,9 +65,7 @@ public class Compilation {
                     f = false;
                 else if (f && !line.contains("[INFO] -------------------------------------------------------------")) {
                     res += line + "\n";
-                    System.out.println(line);
                 }
-                System.out.println(line);
             }
 
         } catch (IOException e) {

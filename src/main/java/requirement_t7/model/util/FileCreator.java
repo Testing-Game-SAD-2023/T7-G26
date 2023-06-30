@@ -13,12 +13,10 @@ public class FileCreator {
         File file = new File(name+".java");
         try (FileWriter fw = new FileWriter(file.getAbsoluteFile());
              BufferedWriter bw = new BufferedWriter(fw);){
-
             bw.write(code);
             bw.close();
             System.out.println("File created successfully.");
         } catch (IOException e) {
-            e.printStackTrace();
         }
         return file;
     }

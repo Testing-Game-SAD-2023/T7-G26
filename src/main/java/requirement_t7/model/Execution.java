@@ -38,7 +38,6 @@ public class Execution {
                     f=false;
                 else if(f) {
                     res += line.substring(7) + "\n";
-                    System.out.println(line);
                 }
             }
         } catch (IOException e) {
