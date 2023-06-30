@@ -18,7 +18,7 @@ public final class Logger {
     private String path;
     private Logger(){
         String folderPath = "logs/";
-        String fileName = "LOG-T7-G26-" + getFormattedDateTimeFile() + ".txt";
+        String fileName = "LOG-T7-G26-" + getFormattedDateTime("file") + ".txt";
         this.path = folderPath + fileName;
         createLog(this.path);
     }
@@ -41,14 +41,18 @@ public final class Logger {
         }
     }
 
-    private String getFormattedDateTimeFile() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d-EEE-yyyy--HH-mm-ss");
-        return dateFormat.format(new Date());
-    }
+    private String getFormattedDateTime(String type) {
+        SimpleDateFormat dateFormat = null;
+        if(type.equals("file")){
+            dateFormat = new SimpleDateFormat("d-EEE-yyyy--HH-mm-ss");
+        } else if(type.equals("log")){
+            dateFormat = new SimpleDateFormat("dd/MM/yyyy--HH:mm:ss");
+        }
 
-    private String getFormattedDateTimeLog() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy--HH:mm:ss");
-        return dateFormat.format(new Date());
+        if(dateFormat != null){
+            return dateFormat.format(new Date());
+        }
+        return null;
     }
 
     public void log(String type, String message) {
@@ -70,6 +74,6 @@ public final class Logger {
     }
 
     private String getFormattedMessage(String type, String message){
-        return getFormattedDateTimeLog() + type + message;
+        return getFormattedDateTime("log") + type + message;
     }
 }
