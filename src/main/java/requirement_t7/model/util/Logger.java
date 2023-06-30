@@ -41,21 +41,33 @@ public final class Logger {
 
     private String getFormattedDateTime(String type) {
         SimpleDateFormat dateFormat = null;
-        if(type == "file"){
+        if(type.equals("file")){
             dateFormat = new SimpleDateFormat("d-EEE-yyyy--HH-mm-ss");
-        } else if(type == "log"){
+        } else if(type.equals("log")){
             dateFormat = new SimpleDateFormat("dd/MM/yyyy--HH:mm:ss");
         }
-        return dateFormat.format(new Date());
+
+        if(dateFormat != null){
+            return dateFormat.format(new Date());
+        }
+        return null;
     }
 
     public void log(String type, String message) {
+        FileWriter fileWriter = null;
         try {
-            FileWriter fileWriter = new FileWriter(this.path, true);
+            fileWriter = new FileWriter(this.path, true);
             fileWriter.write(getFormattedMessage(type, message) + "\n");
-            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (fileWriter != null) {
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
