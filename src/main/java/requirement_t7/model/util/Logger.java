@@ -13,7 +13,6 @@ public final class Logger {
     public static final String RUNNING = " [RUNNING] -> ";
     public static final String INFO = " [INFO] -> ";
     private static Logger instance;
-    private File log;
     private String path;
     private Logger(){
         String folderPath = "logs/";
