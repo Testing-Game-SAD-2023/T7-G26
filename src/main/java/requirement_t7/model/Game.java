@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import requirement_t7.model.util.FileCreator;
 import requirement_t7.model.util.FileDeletor;
+import requirement_t7.model.util.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,6 +27,7 @@ public class Game {
     }
 
     private String obtainCode(String input){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: obtainCode()");
         String res;
         try {
             StringBuilder stringBuilder = new StringBuilder();
@@ -37,12 +39,14 @@ public class Game {
             bufferedReader.close();
             res = stringBuilder.toString();
         } catch (IOException e) {
+            Logger.getInstance().log(Logger.ERROR,e.getMessage());
             throw new RuntimeException(e);
         }
         return res;
     }
 
     public String compile(){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: compile()");
         inputClassCode = obtainCode(inputClassName);
         inputTestClassCode = obtainCode(inputTestClassName);
 
@@ -61,6 +65,7 @@ public class Game {
     }
 
     public String execute(){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: execute()");
         String res;
         if(compiled){
         //Run the test
@@ -77,18 +82,22 @@ public class Game {
     }
 
     private String compileTest(){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: compileTest()");
         return Compilation.compileTest(inputTestClassName, inputTestClassCode);
     }
 
     private String compileClass(){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: compileClass()");
         return Compilation.compileClass(inputClassName,inputClassCode);
     }
 
     public void setInputTestClassName(String inputTestClassName) {
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: setInputTestClassName()");
         this.inputTestClassName = inputTestClassName;
     }
 
     public void setInputClassName(String inputClassName) {
+        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: setInputClassName()");
         this.inputClassName = inputClassName;
     }
 }
