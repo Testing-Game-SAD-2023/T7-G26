@@ -6,11 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import requirement_t7.model.util.CommandExecution;
 import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.Logger;
 
 
 public class Compilation {
 
     public static String compileClass(String inputClassName, String inputClassCode){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: compileClass()");
         FileCreator.createFile("src/main/java/requirement_t7/"+inputClassName,inputClassCode);
 
         String res = "";
@@ -32,6 +34,7 @@ public class Compilation {
     }
 
     public static String compileTest(String inputTestClassName, String inputTestClassCode){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: compileTest()");
         FileCreator.createFile("src/test/java/requirement_t7/"+inputTestClassName,inputTestClassCode);
 
         String res = "";
@@ -54,6 +57,7 @@ public class Compilation {
     }
 
     public static String readInputStream(BufferedReader reader) {
+        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: readInputStream()");
         String res = "";
         try {
             String line;
@@ -69,6 +73,7 @@ public class Compilation {
             }
 
         } catch (IOException e) {
+            Logger.getInstance().log(Logger.ERROR,e.getMessage());
         }
         return res;
     }

@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import requirement_t7.model.util.CommandExecution;
+import requirement_t7.model.util.Logger;
 
 import java.io.*;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Execution {
 
     public static String runTests(){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Execution.java, method: runTests()");
         String res = "";
 
         // Maven command for executing the test
@@ -41,12 +43,14 @@ public class Execution {
                 }
             }
         } catch (IOException e) {
+            Logger.getInstance().log(Logger.ERROR, e.getMessage());
         }
         res+=getCoverage();
         return res;
     }
 
     public static String getCoverage(){
+        Logger.getInstance().log(Logger.RUNNING,"Class: Execution.java, method: getCoverage()");
         String res="";
         try {
             // Load the XML file
@@ -87,6 +91,7 @@ public class Execution {
             res+="\n Missed Lines: " + missedLines;
             res+="\n Coverage Percentage: " + coveragePercentage + "%";
         } catch (Exception e) {
+            Logger.getInstance().log(Logger.ERROR,e.getMessage());
         }
         return res;
     }
