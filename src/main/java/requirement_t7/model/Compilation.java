@@ -4,77 +4,127 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import requirement_t7.model.util.CommandExecution;
 import requirement_t7.model.util.FileCreator;
+import requirement_t7.model.util.FileDeletor;
 import requirement_t7.model.util.Logger;
-
 
 public class Compilation {
 
-    public static String compileClass(String inputClassName, String inputClassCode){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: compileClass()");
-        FileCreator.createFile("src/main/java/requirement_t7/"+inputClassName,inputClassCode);
+    /**
+     * Converts a txt file in a java class and compiles it
+     * @param inputClassName Class name of the class to compile
+     * @param inputClassCode Class code of the class to compile
+     * @return Information of the result of the compilation
+     */
+    public static String compileClass(String inputClassName, String inputClassCode) {
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: Compilation.java, method: compileClass()");
 
-        String res = "";
-        // Compile the class
-        String[] command = null;
-        String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("win")) {
-            //Windows
-            command = new String[]{"cmd.exe", "/c", "mvn", "compile"};
-        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            //Linux o macOS
-            command = new String[]{"mvn", "compile"};
-        }
+        String classFilePath = "src/main/java/requirement_t7/" + inputClassName;
+        FileCreator.createFile(classFilePath, inputClassCode);
+
+        String res;
+
+        String[] command = getCompileCommand();
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         res = readInputStream(reader);
+        if(!res.equals(""))
+            FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
+
         return res;
     }
 
-    public static String compileTest(String inputTestClassName, String inputTestClassCode){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: compileTest()");
-        FileCreator.createFile("src/test/java/requirement_t7/"+inputTestClassName,inputTestClassCode);
+    /**
+     * Converts a txt file in a java test class and compiles it
+     * @param inputTestClassName Class name of the class test to compile
+     * @param inputTestClassCode Class code of the class test to compile
+     * @return Information of the result of the compilation
+     */
+    public static String compileTest(String inputTestClassName, String inputTestClassCode) {
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: Compilation.java, method: compileTest()");
 
-        String res = "";
-        // Compile the test class
+        String testFilePath = "src/test/java/requirement_t7/" + inputTestClassName;
+        FileCreator.createFile(testFilePath, inputTestClassCode);
 
-        String[] command = null;
-        String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("win")) {
-            //Windows
-            command = new String[]{"cmd.exe", "/c", "mvn", "test-compile", "-Dtest="+inputTestClassName};
-        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            //Linux or macOS
-            command = new String[]{"mvn", "test-compile", "-Dtest="+inputTestClassName};
-        }
+        String res;
+
+        String[] command = getTestCompileCommand(inputTestClassName);
         CommandExecution process = new CommandExecution();
         InputStream inputStream = process.executeCommand(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         res = readInputStream(reader);
+        if(!res.equals("")){
+            FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
+            FileDeletor.deleteFile("src/test/java/requirement_t7/InputTestClass.java");
+        }
+
         return res;
     }
 
-    public static String readInputStream(BufferedReader reader) {
-        Logger.getInstance().log(Logger.RUNNING,"Class: Compilation.java, method: readInputStream()");
-        String res = "";
+    /**
+     * Gets the compile command to execute it
+     * @return Command to execute in the command line depending on the OS
+     */
+    private static String[] getCompileCommand() {
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            return new String[]{"cmd.exe", "/c", "mvn", "compile"};
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            return new String[]{"mvn", "compile"};
+        } else {
+            throw new UnsupportedOperationException("Unsupported operating system: " + os);
+        }
+    }
+
+    /**
+     * Gets the compile command of the test to execute it
+     * @param testClassName Class test name to compile
+     * @return Command to execute in the command line depending on the OS
+     */
+    private static String[] getTestCompileCommand(String testClassName) {
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            return new String[]{"cmd.exe", "/c", "mvn", "test-compile", "-Dtest=" + testClassName};
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            return new String[]{"mvn", "test-compile", "-Dtest=" + testClassName};
+        } else {
+            throw new UnsupportedOperationException("Unsupported operating system: " + os);
+        }
+    }
+
+    /**
+     * Reads the console log of the execution of the commands and sums it up
+     * @param reader The reader of the inputStream
+     * @return The summarized output
+     */
+    private static String readInputStream(BufferedReader reader) {
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: Compilation.java, method: readInputStream()");
+
+        StringBuilder res = new StringBuilder();
         try {
             String line;
             boolean f = false;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("COMPILATION ERROR :"))
+                if (line.contains("COMPILATION ERROR :")) {
                     f = true;
-                else if (line.contains("INFO") && !line.contains("[INFO] -------------------------------------------------------------"))
+                } else if (line.contains("INFO") && !line.contains("[INFO] -------------------------------------------------------------")) {
                     f = false;
-                else if (f && !line.contains("[INFO] -------------------------------------------------------------")) {
-                    res += line + "\n";
+                } else if (f && !line.contains("[INFO] -------------------------------------------------------------")) {
+                    res.append(line).append("\n");
+                    logger.log(Logger.ERROR, line);
                 }
             }
-
         } catch (IOException e) {
-            Logger.getInstance().log(Logger.ERROR,e.getMessage());
+            logger.log(Logger.ERROR, e.getMessage());
         }
-        return res;
+        return res.toString();
     }
 }

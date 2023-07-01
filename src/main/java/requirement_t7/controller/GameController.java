@@ -1,9 +1,6 @@
 package requirement_t7.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import requirement_t7.model.Game;
 import requirement_t7.model.util.Logger;
@@ -11,15 +8,26 @@ import requirement_t7.model.util.Logger;
 @RestController
 public class GameController {
 
-    @Autowired
-    private Game game;
+    private final Game game;
 
+    public GameController(Game game) {
+        this.game = game;
+    }
+
+    /**
+     * Executes the test class
+     * @return Result of the execution
+     */
     @PostMapping(value = "/execute")
     public String execute(){
         Logger.getInstance().log(Logger.RUNNING,"Class: GameController.java, method: execute()");
         return game.execute();
     }
 
+    /**
+     * Compiles the classes of the game
+     * @return The result of the compilation
+     */
     @PostMapping(value = "/compile")
     public String compile(){
         Logger.getInstance().log(Logger.RUNNING,"Class: GameController.java, method: compile()");

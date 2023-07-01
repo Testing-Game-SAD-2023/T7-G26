@@ -8,6 +8,10 @@ import requirement_t7.model.util.Logger;
 @Controller
 public class HomeController {
 
+    /**
+     * The home page
+     * @return The home page
+     */
     @RequestMapping(method = RequestMethod.GET, path = "/")
     public String index() {
         Logger.getInstance().log(Logger.RUNNING,"Class: HomeController.java, method: index()");
