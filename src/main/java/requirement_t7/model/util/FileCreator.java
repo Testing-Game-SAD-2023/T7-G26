@@ -9,16 +9,23 @@ import java.io.IOException;
 
 @Component
 public class FileCreator {
+
+    /**
+     * Method that creates a java file
+     * @param name Name of the java file to create
+     * @param code Code of the java file
+     * @return file
+     */
     public static File createFile(String name, String code) {
-        Logger.getInstance().log(Logger.RUNNING,"Class: FileCreator.java, method: createFile()");
-        File file = new File(name+".java");
-        try (FileWriter fw = new FileWriter(file.getAbsoluteFile());
-             BufferedWriter bw = new BufferedWriter(fw);){
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: FileCreator.java, method: createFile()");
+
+        File file = new File(name + ".java");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(code);
-            bw.close();
-            Logger.getInstance().log(Logger.INFO,"File created successfully.");
+            logger.log(Logger.INFO, "File created successfully.");
         } catch (IOException e) {
-            Logger.getInstance().log(Logger.ERROR,e.getMessage());
+            logger.log(Logger.ERROR, e.getMessage());
         }
         return file;
     }

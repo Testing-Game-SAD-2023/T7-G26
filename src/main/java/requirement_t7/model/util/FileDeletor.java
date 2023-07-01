@@ -6,17 +6,25 @@ import java.io.File;
 
 @Component
 public class FileDeletor {
+
+    /**
+     * Deletes a file.
+     * @param path The path of the file to delete.
+     */
     public static void deleteFile(String path){
-        Logger.getInstance().log(Logger.RUNNING,"Class: FileDeletor.java, method: deleteFile()");
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: FileDeletor.java, method: deleteFile()");
+
         File file = new File(path);
         if (file.exists()) {
             if (file.delete()) {
-                Logger.getInstance().log(Logger.INFO,"File deleted successfully.");
+                logger.log(Logger.INFO, "File deleted successfully.");
             } else {
-                Logger.getInstance().log(Logger.INFO,"Failed to delete the file.");
+                logger.log(Logger.INFO, "Failed to delete the file.");
             }
         } else {
-            Logger.getInstance().log(Logger.INFO,"File does not exist.");
+            logger.log(Logger.INFO, "File does not exist.");
         }
     }
 }
+
