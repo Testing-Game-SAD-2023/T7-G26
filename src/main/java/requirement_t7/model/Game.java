@@ -1,8 +1,7 @@
 package requirement_t7.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import requirement_t7.model.util.FileCreator;
+
 import requirement_t7.model.util.FileDeletor;
 import requirement_t7.model.util.Logger;
 
@@ -15,89 +14,95 @@ public class Game {
 
     private String inputTestClassName;
     private String inputClassName;
-    private String inputClassCode;
-    private String inputTestClassCode;
-
-    @Autowired
-    private FileDeletor fileDeletor;
 
     private boolean compiled;
 
-    public Game(){
+    public Game() {
     }
 
-    private String obtainCode(String input){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: obtainCode()");
-        String res;
-        try {
-            StringBuilder stringBuilder = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(input+".txt"));
+    /**
+     * Obtains the code of the txt file
+     *
+     * @param input the file name of the txt file to obtain the code
+     * @return The code of the txt file
+     */
+    private String obtainCode(String input) {
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: Game.java, method: obtainCode()");
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(input + ".txt"))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append("\n");
             }
-            bufferedReader.close();
-            res = stringBuilder.toString();
         } catch (IOException e) {
-            Logger.getInstance().log(Logger.ERROR,e.getMessage());
+            logger.log(Logger.ERROR, e.getMessage());
             throw new RuntimeException(e);
         }
-        return res;
+        return stringBuilder.toString();
     }
 
-    public String compile(){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: compile()");
-        inputClassCode = obtainCode(inputClassName);
-        inputTestClassCode = obtainCode(inputTestClassName);
+    /**
+     * Compiles the classes of the game
+     *
+     * @return Result of the compilation
+     */
+    public String compile() {
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: Game.java, method: compile()");
+        String inputClassCode = obtainCode(inputClassName);
+        String inputTestClassCode = obtainCode(inputTestClassName);
 
-        String res="";
-        compiled=false;
+        StringBuilder res = new StringBuilder();
+        compiled = false;
 
-        //Compile input class
-        res+=compileClass();
-        res+=compileTest();
+        res.append(Compilation.compileClass(inputClassName, inputClassCode));
+        res.append(Compilation.compileTest(inputTestClassName, inputTestClassCode));
 
-        if(res.equals("")) {
+        if (res.length() == 0) {
             compiled = true;
-            res="Compiled";
+            res.append("Compiled");
         }
+        return res.toString();
+    }
+
+    /**
+     * Executes the classes of the game
+     *
+     * @return Result of execution
+     */
+    public String execute() {
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.RUNNING, "Class: Game.java, method: execute()");
+        if (!compiled) {
+            return "Cannot execute because you have not compiled";
+        }
+
+        String res = Execution.runTest(inputClassName, inputTestClassName);
+
+        FileDeletor.deleteFile("src/main/java/requirement_t7/" + inputClassName + ".java");
+        FileDeletor.deleteFile("src/test/java/requirement_t7/" + inputTestClassName + ".java");
+
         return res;
     }
 
-    public String execute(){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: execute()");
-        String res;
-        if(compiled){
-        //Run the test
-        res= Execution.runTests(inputTestClassName);
-       }
-        else{
-            res = "Cannot execute because you have not compiled";
-        }
-
-        fileDeletor.deleteFile("src/main/java/requirement_t7/"+inputClassName+".java");
-        fileDeletor.deleteFile("src/test/java/requirement_t7/"+inputTestClassName+".java");
-
-        return res;
-    }
-
-    private String compileTest(){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: compileTest()");
-        return Compilation.compileTest(inputTestClassName, inputTestClassCode);
-    }
-
-    private String compileClass(){
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: compileClass()");
-        return Compilation.compileClass(inputClassName,inputClassCode);
-    }
-
+    /**
+     * Sets the test class name of the game
+     *
+     * @param inputTestClassName Name of the test of the game
+     */
     public void setInputTestClassName(String inputTestClassName) {
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: setInputTestClassName()");
+        Logger.getInstance().log(Logger.RUNNING, "Class: Game.java, method: setInputTestClassName()");
         this.inputTestClassName = inputTestClassName;
     }
 
+    /**
+     * Sets the class name of the game
+     *
+     * @param inputClassName Name of the class of the game
+     */
     public void setInputClassName(String inputClassName) {
-        Logger.getInstance().log(Logger.RUNNING,"Class: Game.java, method: setInputClassName()");
+        Logger.getInstance().log(Logger.RUNNING, "Class: Game.java, method: setInputClassName()");
         this.inputClassName = inputClassName;
     }
 }

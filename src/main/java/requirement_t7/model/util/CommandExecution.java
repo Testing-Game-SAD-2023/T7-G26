@@ -4,26 +4,23 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class CommandExecution {
+
+    /**
+     * Method that executes a command in the command line
+     * @param command The command to execute
+     * @return The result of the execution of the command
+     */
     public InputStream executeCommand(String[] command) {
         InputStream inputStream = null;
         try {
-            // Create a process to execute the command
             ProcessBuilder processBuilder = new ProcessBuilder(command);
-
-            // Redirect the process output to the console
             processBuilder.redirectErrorStream(true);
 
-            // Start the process
-            Process process = null;
-
-            process = processBuilder.start();
-
-            // Read the process output
+            Process process = processBuilder.start();
             inputStream = process.getInputStream();
         } catch (IOException e) {
-            Logger.getInstance().log(Logger.ERROR,e.getMessage());
+            Logger.getInstance().log(Logger.ERROR, e.getMessage());
         }
         return inputStream;
     }
-
 }
