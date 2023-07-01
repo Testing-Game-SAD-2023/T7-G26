@@ -55,7 +55,7 @@ public class TestExecution {
                     "    }\n" +
                     "}");
 
-        assertTrue(Execution.runTests().contains("Tests run:"));
+        assertTrue(Execution.runTests("InputTestClass").contains("Tests run:"));
         FileDeletor.deleteFile("src/test/java/requirement_t7/InputTestClass.java");
         FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
     }
@@ -103,7 +103,7 @@ public class TestExecution {
                 "    }\n" +
                 "}");
 
-        assertTrue(Execution.runTests().contains("Failures: 2"));
+        assertTrue(Execution.runTests("InputTestClass").contains("Failures: 2"));
         FileDeletor.deleteFile("src/test/java/requirement_t7/InputTestClass.java");
         FileDeletor.deleteFile("src/main/java/requirement_t7/InputClass.java");
     }

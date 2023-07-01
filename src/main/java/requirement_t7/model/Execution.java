@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Execution {
 
-    public static String runTests(){
+    public static String runTests(String inputTestClassName){
         Logger.getInstance().log(Logger.RUNNING,"Class: Execution.java, method: runTests()");
         String res = "";
 
@@ -21,7 +21,7 @@ public class Execution {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             //Windows
-            command = new String[]{"cmd.exe", "/c", "mvn", "test", "-Dtest=InputTestClass"};
+            command = new String[]{"cmd.exe", "/c", "mvn", "test", "-Dtest="+inputTestClassName};
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
             //Linux or macOS
             command = new String[]{"mvn", "test", "-Dtest=InputTestClass"};

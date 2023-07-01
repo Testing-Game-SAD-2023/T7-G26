@@ -5,7 +5,6 @@ import java.io.InputStream;
 
 public class CommandExecution {
     public InputStream executeCommand(String[] command) {
-        Logger.getInstance().log(Logger.RUNNING,"Class: CommandExecution.java, method: executeCommand()");
         InputStream inputStream = null;
         try {
             // Create a process to execute the command

@@ -69,7 +69,7 @@ public class Game {
         String res;
         if(compiled){
         //Run the test
-        res= Execution.runTests();
+        res= Execution.runTests(inputTestClassName);
        }
         else{
             res = "Cannot execute because you have not compiled";
