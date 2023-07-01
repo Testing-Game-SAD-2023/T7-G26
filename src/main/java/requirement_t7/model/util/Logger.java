@@ -1,8 +1,5 @@
 package requirement_t7.model.util;
 
-import org.apache.juli.logging.Log;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
