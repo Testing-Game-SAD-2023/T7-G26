@@ -5,6 +5,14 @@ import org.springframework.web.bind.annotation.RestController;
 import requirement_t7.model.Game;
 import requirement_t7.model.util.Logger;
 
+/**
+ * This class is the controller of the task Compilation-Execution.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-04-17
+ */
 @RestController
 public class GameController {
 

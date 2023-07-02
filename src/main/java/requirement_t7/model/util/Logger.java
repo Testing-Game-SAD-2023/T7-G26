@@ -7,6 +7,14 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class represents the logger of the app.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-06-29
+ */
 public final class Logger {
     public static final String ERROR = " [ERROR] -> ";
     public static final String RUNNING = " [RUNNING] -> ";
