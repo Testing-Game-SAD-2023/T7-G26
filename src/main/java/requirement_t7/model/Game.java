@@ -9,6 +9,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * This class represents the Game.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-04-14
+ */
 @Service
 public class Game {
 

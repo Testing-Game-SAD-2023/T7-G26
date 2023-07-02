@@ -7,6 +7,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * This class is responsible of creating a File.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-04-15
+ */
 @Component
 public class FileCreator {
 

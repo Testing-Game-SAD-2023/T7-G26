@@ -10,6 +10,14 @@ import requirement_t7.model.util.FileCreator;
 import requirement_t7.model.util.FileDeletor;
 import requirement_t7.model.util.Logger;
 
+/**
+ * This class represents the compilation task.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-04-15
+ */
 public class Compilation {
 
     /**

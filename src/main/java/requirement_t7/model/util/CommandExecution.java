@@ -3,6 +3,14 @@ package requirement_t7.model.util;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This class is responsible of the execution of commands in the command line.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-06-24
+ */
 public class CommandExecution {
 
     /**

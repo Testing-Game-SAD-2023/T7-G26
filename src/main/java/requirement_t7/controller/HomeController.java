@@ -5,6 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import requirement_t7.model.util.Logger;
 
+/**
+ * This class is the controller of the game.
+ *
+ * @author Pedro Zahonero Mangas
+ * @author Pablo Garcia Fernandez
+ * @version 1.0
+ * @since 2023-04-17
+ */
 @Controller
 public class HomeController {
 
