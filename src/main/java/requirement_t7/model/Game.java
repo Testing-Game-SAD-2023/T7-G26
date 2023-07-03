@@ -90,6 +90,7 @@ public class Game {
 
         FileDeletor.deleteFile("src/main/java/requirement_t7/" + inputClassName + ".java");
         FileDeletor.deleteFile("src/test/java/requirement_t7/" + inputTestClassName + ".java");
+        compiled=false;
 
         return res;
     }
