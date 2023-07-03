@@ -25,6 +25,8 @@ The outcome of the execution must be processed in such a way as to extract from 
 <a href="https://junit.org/junit5/" style="margin-right: 0.5em;"><img src="https://i0.wp.com/blog.knoldus.com/wp-content/uploads/2020/06/junit5-banner.png?w=982&ssl=1" height="50"></a>
 <a href="https://www.w3.org/html/" style="margin-right: 0.5em;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/390px-HTML5_logo_and_wordmark.svg.png" height="50"></a>
 <a href="https://github.com/actions" style="margin-right: 0.5em;"><img src="https://avatars.githubusercontent.com/u/44036562?s=200&v=4" height="50"></a>
+<a href="https://www.docker.com/" style="margin-right: 0.5em;"><img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" height="50"></a>
+<a href="https://swagger.io/" style="margin-right: 0.5em;"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" height="50"></a>
 </p>
 
 
