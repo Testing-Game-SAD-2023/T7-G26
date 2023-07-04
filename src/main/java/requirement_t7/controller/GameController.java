@@ -1,6 +1,7 @@
 package requirement_t7.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import requirement_t7.model.Game;
 import requirement_t7.model.util.Logger;
@@ -34,13 +35,18 @@ public class GameController {
 
     /**
      * Compiles the classes of the game
+     *
+     * @param inputClassName The name of the txt of the class to test
+     * @param inputTestClassName The name of the txt of the test class
      * @return The result of the compilation
      */
     @PostMapping(value = "/compile")
-    public String compile(){
-        Logger.getInstance().log(Logger.RUNNING,"Class: GameController.java, method: compile()");
-        game.setInputClassName("InputClass");
-        game.setInputTestClassName("InputTestClass");
+    public String compile(@RequestParam(value="inputClassName", defaultValue = "InputClass") String inputClassName,
+                          @RequestParam(value="inputTestClassName", defaultValue = "InputTestClass") String inputTestClassName) {
+        Logger.getInstance().log(Logger.RUNNING, "Class: GameController.java, method: compile()");
+        game.setInputClassName(inputClassName);
+        game.setInputTestClassName(inputTestClassName);
         return game.compile();
     }
+
 }

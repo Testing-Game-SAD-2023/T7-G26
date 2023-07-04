@@ -25,9 +25,8 @@ The outcome of the execution must be processed in such a way as to extract from 
 <a href="https://junit.org/junit5/" style="margin-right: 0.5em;"><img src="https://i0.wp.com/blog.knoldus.com/wp-content/uploads/2020/06/junit5-banner.png?w=982&ssl=1" height="50"></a>
 <a href="https://www.w3.org/html/" style="margin-right: 0.5em;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/390px-HTML5_logo_and_wordmark.svg.png" height="50"></a>
 <a href="https://github.com/actions" style="margin-right: 0.5em;"><img src="https://avatars.githubusercontent.com/u/44036562?s=200&v=4" height="50"></a>
-<a href="https://www.docker.com/" style="margin-right: 0.5em;"><img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" height="50"></a>
-<a href="https://swagger.io/" style="margin-right: 0.5em;"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" height="50"></a>
-</p>
+<a href="https://swagger.io/" style="margin-right: 0.5em;"><img src="https://pnx-assets-prod.s3.amazonaws.com/2020-07/swagger_logo_1.png" height="50"></a>
+<a href="https://www.docker.com/" style="margin-right: 0.5em;"><img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" height="50"></a>
 
 
 ## How to run
@@ -58,3 +57,48 @@ requirement_t7.TestSuite.java
 ```bash
 mvn -B test
 ```
+
+## How to run in Docker
+
+To run the project in Docker, follow these steps:
+
+1. Make sure you have Docker installed on your machine. You can download and install it from the official Docker website.
+
+2. Build the Docker image by running the following command in the terminal:
+
+    ```bash
+    docker build -t image-name .
+    ```
+
+   Replace `image-name` with the name you want to give to your Docker image.
+
+3. Once the image is built, run the Docker container with the following command:
+
+    ```bash
+    docker run -p 8090:8090 image-name
+    ```
+
+   This command will start the container and map port 8090 of the container to port 8090 of your local machine.
+
+4. Open your preferred web browser and navigate to:
+
+    ```bash
+    http://localhost:8090/swagger-ui.html
+    ```
+
+   You should now be able to access your application running in Docker.
+
+   Note: If you need to change the server port inside the container, you can modify it in the `application.properties` file before building the Docker image.
+
+5. To execute the tests, you have two options:
+
+    - Option 1: Execute the `requirement_t7.TestSuite.java` file inside the running container.
+
+    - Option 2: Use the following command to execute the tests using Maven:
+
+      ```bash
+      docker exec container-id mvn -B test
+      ```
+
+   Replace `container-id` with the ID of the running Docker container.
+
