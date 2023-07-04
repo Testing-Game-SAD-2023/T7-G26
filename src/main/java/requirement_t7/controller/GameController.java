@@ -41,9 +41,19 @@ public class GameController {
      * @return The result of the compilation
      */
     @PostMapping(value = "/compile")
-    public String compile(@RequestParam(value="inputClassName", defaultValue = "InputClass") String inputClassName,
-                          @RequestParam(value="inputTestClassName", defaultValue = "InputTestClass") String inputTestClassName) {
+    public String compile(@RequestParam(value="inputClassName", required = false, defaultValue = "") String inputClassName,
+                          @RequestParam(value="inputTestClassName", required = false, defaultValue = "") String inputTestClassName) {
         Logger.getInstance().log(Logger.RUNNING, "Class: GameController.java, method: compile()");
+        // Check if input class names are empty
+        if (inputClassName.isEmpty()) {
+            // Set a default value or generate a unique identifier
+            inputClassName = "InputClass";
+        }
+
+        if (inputTestClassName.isEmpty()) {
+            // Set a default value or generate a unique identifier
+            inputTestClassName = "InputTestClass";
+        }
         game.setInputClassName(inputClassName);
         game.setInputTestClassName(inputTestClassName);
         return game.compile();
