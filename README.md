@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Testing-Game-SAD-2023_T7-G26&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Testing-Game-SAD-2023_T7-G26)
 [![codecov](https://codecov.io/gh/Testing-Game-SAD-2023/T7-G26/branch/master/graph/badge.svg?token=QO87WH2W7H)](https://codecov.io/gh/Testing-Game-SAD-2023/T7-G26)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPabloGarciaFernandez%2FSoftware-Architecture-Design-Project.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPabloGarciaFernandez%2FSoftware-Architecture-Design-Project?ref=badge_shield)
-
+![Static Badge](https://img.shields.io/badge/release-v1.0.0-blue)
 
 ## Description
 

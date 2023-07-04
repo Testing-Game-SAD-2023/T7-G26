@@ -61,7 +61,7 @@ public class GameController {
      * @param inputClassName Name of the class to validate
      * @return true if it is valid
      */
-    private boolean isValidInputClassName(String inputClassName) {
+    public boolean isValidInputClassName(String inputClassName) {
         return inputClassName.contains("/") || inputClassName.contains(".") || inputClassName.contains("\"");
     }
 

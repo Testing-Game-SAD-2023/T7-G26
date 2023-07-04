@@ -21,7 +21,8 @@ import requirement_t7.model.util.TestFileDeletor;
         TestHomeController.class,
         TestFileCreator.class,
         TestFileDeletor.class,
-        TestCommandExecution.class
+        TestCommandExecution.class,
+        TestSwaggerConfig.class
 })
 public class TestSuite {
 }
