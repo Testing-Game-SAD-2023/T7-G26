@@ -41,22 +41,28 @@ public class GameController {
      * @return The result of the compilation
      */
     @PostMapping(value = "/compile")
-    public String compile(@RequestParam(value="inputClassName", required = false, defaultValue = "") String inputClassName,
-                          @RequestParam(value="inputTestClassName", required = false, defaultValue = "") String inputTestClassName) {
+    public String compile(@RequestParam(value="inputClassName", defaultValue = "InputClass") String inputClassName,
+                          @RequestParam(value="inputTestClassName", defaultValue = "InputTestClass") String inputTestClassName) {
         Logger.getInstance().log(Logger.RUNNING, "Class: GameController.java, method: compile()");
-        // Check if input class names are empty
-        if (inputClassName.isEmpty()) {
-            // Set a default value or generate a unique identifier
-            inputClassName = "InputClass";
+        if (isValidInputClassName(inputClassName)) {
+            return "Invalid input class name";
         }
 
-        if (inputTestClassName.isEmpty()) {
-            // Set a default value or generate a unique identifier
-            inputTestClassName = "InputTestClass";
+        if (isValidInputClassName(inputTestClassName)) {
+            return "Invalid input test class name";
         }
         game.setInputClassName(inputClassName);
         game.setInputTestClassName(inputTestClassName);
         return game.compile();
+    }
+
+    /**
+     * Validates the name of the class in order to avoid vulnerabilities
+     * @param inputClassName Name of the class to validate
+     * @return true if it is valid
+     */
+    private boolean isValidInputClassName(String inputClassName) {
+        return inputClassName.contains("/") || inputClassName.contains(".") || inputClassName.contains("\"");
     }
 
 }
