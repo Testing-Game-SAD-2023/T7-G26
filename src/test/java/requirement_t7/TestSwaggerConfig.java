@@ -13,12 +13,12 @@ public class TestSwaggerConfig {
     private SwaggerConfig swaggerConfig;
 
     @BeforeEach
-    public void setup() {
+    void init() {
         swaggerConfig = new SwaggerConfig();
     }
 
     @Test
-    public void testApiDocket_ReturnsDocketInstance() {
+    void testApiDocket_ReturnsDocketInstance() {
         // Act
         Docket docket = swaggerConfig.apiDocket();
 
@@ -27,7 +27,7 @@ public class TestSwaggerConfig {
     }
 
     @Test
-    public void testApiInfo_ReturnsExpectedApiInfo() {
+    void testApiInfo_ReturnsExpectedApiInfo() {
         // Act
         ApiInfo apiInfo = swaggerConfig.apiInfo();
 
