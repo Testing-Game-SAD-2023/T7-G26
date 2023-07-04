@@ -19,19 +19,13 @@ class TestSwaggerConfig {
 
     @Test
     void testApiDocket_ReturnsDocketInstance() {
-        // Act
         Docket docket = swaggerConfig.apiDocket();
-
-        // Assert
         assertEquals(Docket.class, docket.getClass());
     }
 
     @Test
     void testApiInfo_ReturnsExpectedApiInfo() {
-        // Act
         ApiInfo apiInfo = swaggerConfig.apiInfo();
-
-        // Assert
         assertEquals("API Documentation", apiInfo.getTitle());
         assertEquals("API documentation for T7-G26", apiInfo.getDescription());
         assertEquals("1.0.0", apiInfo.getVersion());
