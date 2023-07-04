@@ -3,7 +3,6 @@ package requirement_t7.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import requirement_t7.model.Game;
 import requirement_t7.model.util.FileDeletor;
 
 import static org.junit.jupiter.api.Assertions.*;
