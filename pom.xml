@@ -10,11 +10,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>Software-Architecture-Design-Project</artifactId>
+    <artifactId>T7-G26</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Software-Architecture-Design-Project</name>
-    <description>Software-Architecture-Design-Project</description>
+    <name>T7-G26</name>
+    <description>T7-G26</description>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
