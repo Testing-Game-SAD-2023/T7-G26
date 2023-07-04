@@ -18,16 +18,16 @@ public class SwaggerConfig {
     public Docket apiDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("requirement_t7.controller")) // Reemplaza "tu.paquete.controladores" por el paquete donde se encuentran tus controladores
+                .apis(RequestHandlerSelectors.basePackage("requirement_t7.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
     }
 
-    private ApiInfo apiInfo() {
+    public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("API Documentation")
-                .description("API documentation for your application")
+                .description("API documentation for T7-G26")
                 .version("1.0.0")
                 .build();
     }

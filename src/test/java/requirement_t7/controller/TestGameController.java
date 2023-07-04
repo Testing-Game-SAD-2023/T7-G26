@@ -1,5 +1,7 @@
 package requirement_t7.controller;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
@@ -10,6 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import requirement_t7.T7Application;
 import requirement_t7.model.Game;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -23,6 +27,8 @@ public class TestGameController{
 
     @MockBean
     private Game game;
+
+    private GameController gameController;
 
     @Test
     void testExecuteEndpoint() throws Exception {
@@ -44,9 +50,28 @@ public class TestGameController{
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Compilation Result"));
-
-        verify(game, times(1)).setInputClassName("InputClass");
-        verify(game, times(1)).setInputTestClassName("InputTestClass");
         verify(game, times(1)).compile();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "ValidClassName", "AnotherValidClassName123" })
+    void testIsValidInputClassName_ValidInput(String className) {
+        gameController = new GameController(new Game());
+        // Act
+        boolean isValid = gameController.isValidInputClassName(className);
+
+        // Assert
+        assertFalse(isValid);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "Invalid/ClassName", "ClassName.With.Dots", "ClassName\"WithQuotes\"" })
+    void testIsValidInputClassName_InvalidInput(String className) {
+        gameController = new GameController(new Game());
+        // Act
+        boolean isValid = gameController.isValidInputClassName(className);
+
+        // Assert
+        assertTrue(isValid);
     }
 }

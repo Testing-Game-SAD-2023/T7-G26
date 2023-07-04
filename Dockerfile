@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM adoptopenjdk:17.0.6_jdk-hotspot
 
 COPY . /app
 

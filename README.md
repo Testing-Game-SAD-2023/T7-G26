@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Testing-Game-SAD-2023_T7-G26&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Testing-Game-SAD-2023_T7-G26)
 [![codecov](https://codecov.io/gh/Testing-Game-SAD-2023/T7-G26/branch/master/graph/badge.svg?token=QO87WH2W7H)](https://codecov.io/gh/Testing-Game-SAD-2023/T7-G26)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPabloGarciaFernandez%2FSoftware-Architecture-Design-Project.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPabloGarciaFernandez%2FSoftware-Architecture-Design-Project?ref=badge_shield)
-
+![Static Badge](https://img.shields.io/badge/release-v1.0.0-blue)
 
 ## Description
 
@@ -31,29 +31,15 @@ The outcome of the execution must be processed in such a way as to extract from 
 
 ## How to run
 
-To start the project on local you have to run:
-
-```bash
-T7Application.java
-```
-
-Then open your browser in:
+To start the project on local you have to run `T7Application.java` and then open your browser in:
 
 ```bash
 http://localhost:8090/
 ```
 
-You can change the server port in:
+You can change the server port in the `application.properties` file.
 
-```bash
-application.properties
-```
-
-To execute the tests you either can execute this file or use the following command:
-
-```bash
-requirement_t7.TestSuite.java
-```
+To execute the tests you either can execute `requirement_t7.TestSuite.java` or use the following command:
 ```bash
 mvn -B test
 ```
@@ -88,7 +74,7 @@ To run the project in Docker, follow these steps:
 
    You should now be able to access your application running in Docker.
 
-   Note: If you need to change the server port inside the container, you can modify it in the `application.properties` file before building the Docker image.
+   Note: If you need to change the server port inside the container, you can modify it in the `application.properties` file and in `Dockerfile` before building the Docker image.
 
 5. To execute the tests, you have two options:
 
