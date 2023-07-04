@@ -50,7 +50,12 @@ To run the project in Docker, follow these steps:
 
 1. Make sure you have Docker installed on your machine. You can download and install it from the official Docker website.
 
-2. Build the Docker image by running the following command in the terminal:
+2. Execute in the terminal this command:
+   ```bash
+   mvn clean package
+   ```
+
+3. Build the Docker image by running the following command in the terminal:
 
     ```bash
     docker build -t image-name .
@@ -58,7 +63,7 @@ To run the project in Docker, follow these steps:
 
    Replace `image-name` with the name you want to give to your Docker image.
 
-3. Once the image is built, run the Docker container with the following command:
+4. Once the image is built, run the Docker container with the following command:
 
     ```bash
     docker run -p 8090:8090 image-name
@@ -66,17 +71,17 @@ To run the project in Docker, follow these steps:
 
    This command will start the container and map port 8090 of the container to port 8090 of your local machine.
 
-4. Open your preferred web browser and navigate to:
+5. Open your preferred web browser and navigate to:
 
     ```bash
-    http://localhost:8090/swagger-ui.html
+    http://localhost:8090/swagger-ui/index.html
     ```
 
    You should now be able to access your application running in Docker.
 
    Note: If you need to change the server port inside the container, you can modify it in the `application.properties` file and in `Dockerfile` before building the Docker image.
 
-5. To execute the tests, you have two options:
+6. To execute the tests, you have two options:
 
     - Option 1: Execute the `requirement_t7.TestSuite.java` file inside the running container.
 
