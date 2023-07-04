@@ -28,8 +28,6 @@ The outcome of the execution must be processed in such a way as to extract from 
 <a href="https://swagger.io/" style="margin-right: 0.5em;"><img src="https://pnx-assets-prod.s3.amazonaws.com/2020-07/swagger_logo_1.png" height="50"></a>
 <a href="https://www.docker.com/" style="margin-right: 0.5em;"><img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" height="50"></a>
 
-</p>
-
 
 ## How to run
 
