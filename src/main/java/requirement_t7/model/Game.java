@@ -38,7 +38,7 @@ public class Game {
         Logger logger = Logger.getInstance();
         logger.log(Logger.RUNNING, "Class: Game.java, method: obtainCode()");
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(input + ".txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("files/" + input + ".txt"))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append("\n");
@@ -90,6 +90,7 @@ public class Game {
 
         FileDeletor.deleteFile("src/main/java/requirement_t7/" + inputClassName + ".java");
         FileDeletor.deleteFile("src/test/java/requirement_t7/" + inputTestClassName + ".java");
+        compiled=false;
 
         return res;
     }
