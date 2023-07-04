@@ -69,7 +69,7 @@ To run the project in Docker, follow these steps:
 4. Open your preferred web browser and navigate to:
 
     ```bash
-    http://localhost:8090/swagger-ui.html
+    http://localhost:8090/swagger-ui/index.html
     ```
 
    You should now be able to access your application running in Docker.
