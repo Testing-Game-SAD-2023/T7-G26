@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 
 @EnableSwagger2
-public class TestSwaggerConfig {
+class TestSwaggerConfig {
     private SwaggerConfig swaggerConfig;
 
     @BeforeEach
