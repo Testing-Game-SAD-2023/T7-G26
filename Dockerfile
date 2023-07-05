@@ -34,6 +34,9 @@ COPY --from=build /app/target/*.jar /app/T7_G26-1.0.0.jar
 # Copy the resources directory to the container
 COPY src/main/resources /app/src/main/resources
 
+# copy pom.xml from context into image
+COPY pom.xml /app/pom.xml
+
 EXPOSE 8090
 
 CMD ["java", "-jar", "T7_G26-1.0.0.jar"]
