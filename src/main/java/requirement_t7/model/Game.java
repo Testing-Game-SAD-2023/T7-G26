@@ -63,7 +63,6 @@ public class Game {
 
         StringBuilder res = new StringBuilder();
         compiled = false;
-
         res.append(Compilation.compileClass(inputClassName, inputClassCode));
         res.append(Compilation.compileTest(inputTestClassName, inputTestClassCode));
 
