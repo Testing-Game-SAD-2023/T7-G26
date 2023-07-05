@@ -80,7 +80,6 @@ public class Compilation {
      */
     private static String[] getCompileCommand() {
         String os = System.getProperty("os.name").toLowerCase();
-
         if (os.contains("win")) {
             return new String[]{"cmd.exe", "/c", "mvn", "compile"};
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
@@ -97,7 +96,6 @@ public class Compilation {
      */
     private static String[] getTestCompileCommand(String testClassName) {
         String os = System.getProperty("os.name").toLowerCase();
-
         if (os.contains("win")) {
             return new String[]{"cmd.exe", "/c", "mvn", "test-compile", "-Dtest=" + testClassName};
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {

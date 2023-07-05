@@ -34,8 +34,14 @@ COPY --from=build /app/target/*.jar /app/T7_G26-1.0.0.jar
 # Copy the resources directory to the container
 COPY src/main/resources /app/src/main/resources
 
+COPY src/test/java/requirement_t7 /app/src/test/java/requirement_t7
+COPY src/main/java/requirement_t7 /app/src/main/java/requirement_t7
+
+
 # copy pom.xml from context into image
 COPY pom.xml /app/pom.xml
+
+RUN mvn clean install
 
 EXPOSE 8090
 
