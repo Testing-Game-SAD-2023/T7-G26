@@ -21,6 +21,10 @@ RUN mvn clean package -DskipTests -DoutputDirectory=/app/target
 # Create a new image with a smaller runtime base image
 FROM openjdk:17-jdk-slim
 
+# Install Maven in the runtime stage
+RUN apt-get update && \
+    apt-get install -y maven
+
 # Set the working directory in the container
 WORKDIR /app
 
