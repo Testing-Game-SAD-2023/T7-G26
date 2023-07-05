@@ -27,6 +27,9 @@ WORKDIR /app
 # Copy the built JAR file from the build stage
 COPY --from=build /app/target/*.jar /app/T7_G26-1.0.0.jar
 
+# Copy the resources directory to the container
+COPY src/main/resources /app/src/main/resources
+
 EXPOSE 8090
 
 CMD ["java", "-jar", "T7_G26-1.0.0.jar"]
