@@ -34,6 +34,8 @@ COPY src/test/java/requirement_t7 /app/src/test/java/requirement_t7
 # copy pom.xml from context into image
 COPY pom.xml /app/pom.xml
 
+RUN mvn clean install
+
 EXPOSE 8090
 
 CMD ["java", "-jar", "T7_G26-1.0.0.jar"]
