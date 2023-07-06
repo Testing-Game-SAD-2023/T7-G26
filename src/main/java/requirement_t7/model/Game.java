@@ -38,7 +38,7 @@ public class Game {
         Logger logger = Logger.getInstance();
         logger.log(Logger.RUNNING, "Class: Game.java, method: obtainCode()");
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("files/" + input + ".txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/files/" + input + ".txt"))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append("\n");
@@ -63,7 +63,6 @@ public class Game {
 
         StringBuilder res = new StringBuilder();
         compiled = false;
-
         res.append(Compilation.compileClass(inputClassName, inputClassCode));
         res.append(Compilation.compileTest(inputTestClassName, inputTestClassCode));
 

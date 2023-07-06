@@ -55,7 +55,7 @@ public class TestGameController{
 
     @ParameterizedTest
     @ValueSource(strings = { "ValidClassName", "AnotherValidClassName123" })
-    void testIsValidInputClassName_ValidInput_ReturnsTrue(String className) {
+    void testIsValidInputClassName_ValidInput(String className) {
         gameController = new GameController(new Game());
         // Act
         boolean isValid = gameController.isValidInputClassName(className);
@@ -66,7 +66,7 @@ public class TestGameController{
 
     @ParameterizedTest
     @ValueSource(strings = { "Invalid/ClassName", "ClassName.With.Dots", "ClassName\"WithQuotes\"" })
-    void testIsValidInputClassName_InvalidInput_ReturnsFalse(String className) {
+    void testIsValidInputClassName_InvalidInput(String className) {
         gameController = new GameController(new Game());
         // Act
         boolean isValid = gameController.isValidInputClassName(className);

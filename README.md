@@ -31,29 +31,15 @@ The outcome of the execution must be processed in such a way as to extract from 
 
 ## How to run
 
-To start the project on local you have to run:
-
-```bash
-T7Application.java
-```
-
-Then open your browser in:
+To start the project on local you have to run `T7Application.java` and then open your browser in:
 
 ```bash
 http://localhost:8090/
 ```
 
-You can change the server port in:
+You can change the server port in the `application.properties` file.
 
-```bash
-application.properties
-```
-
-To execute the tests you either can execute this file or use the following command:
-
-```bash
-requirement_t7.TestSuite.java
-```
+To execute the tests you either can execute `requirement_t7.TestSuite.java` or use the following command:
 ```bash
 mvn -B test
 ```
@@ -83,12 +69,12 @@ To run the project in Docker, follow these steps:
 4. Open your preferred web browser and navigate to:
 
     ```bash
-    http://localhost:8090/swagger-ui.html
+    http://localhost:8090/swagger-ui/index.html
     ```
 
    You should now be able to access your application running in Docker.
 
-   Note: If you need to change the server port inside the container, you can modify it in the `application.properties` file before building the Docker image.
+   Note: If you need to change the server port inside the container, you can modify it in the `application.properties` file and in `Dockerfile` before building the Docker image.
 
 5. To execute the tests, you have two options:
 
