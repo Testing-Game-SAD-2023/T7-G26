@@ -27,9 +27,7 @@ public class FileCreator {
     public static File createFile(String name, String code) {
         Logger logger = Logger.getInstance();
         logger.log(Logger.RUNNING, "Class: FileCreator.java, method: createFile()");
-
         File file = new File(name + ".java");
-        System.out.println(file);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(code);
             logger.log(Logger.INFO, "File created successfully.");
