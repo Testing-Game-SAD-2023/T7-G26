@@ -17,7 +17,6 @@ RUN mvn clean package -DskipTests -DoutputDirectory=/app/target
 # Create a new image with a smaller runtime base image
 FROM maven:3.8.3-openjdk-17-slim
 
-
 # Set the working directory in the container
 WORKDIR /app
 
